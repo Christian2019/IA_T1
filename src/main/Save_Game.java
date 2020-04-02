@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import world.World;
+
 public class Save_Game {
 	public static boolean saveExist = false;
 	public static boolean saveGame = false;
@@ -61,11 +63,9 @@ public class Save_Game {
 	}
 
 	public static void load() {
-	/*
+
 		int cont_line = 1;
-		int nivel = 0;
-		int p = 0;
-		String line = "";
+		
 		File file = new File("save.txt");
 		if (file.exists()) {
 			String singleLine = null;
@@ -73,19 +73,32 @@ public class Save_Game {
 				BufferedReader reader = new BufferedReader(new FileReader("save.txt"));
 				try {
 					while ((singleLine = reader.readLine()) != null) {
-						if ((cont_line - nivel) - (Score.scores.get(0).size() * nivel) == 1) {
-							nivel++;
-							p = 0;
-						} else {
-							String[] score = singleLine.split(":");
-							line = score[0];
-							Score.scores.get(nivel - 1).get(p - 1).name = line;
-							line = score[1];
-							Score.scores.get(nivel - 1).get(p - 1).strokes = line;
+						if (cont_line>1) {
+							int y=cont_line-2;
+							String [] posicoes= singleLine.split(" ");
+						for (int x=0;x<10;x++) {
+							String posicao_atual= posicoes[x];
+							int tile=0;
+							//0=chao 1=parede 2=buraco 3=S 4=entrada
+							if (posicao_atual.equals("E")) {
+								tile=4;
+							}else if (posicao_atual.equals("0")) {
+								tile=0;
+							}else if (posicao_atual.equals("B")) {
+								tile=2;
+							}else if (posicao_atual.equals("1")) {
+								tile=1;
+							}else if (posicao_atual.equals("S")) {
+								tile=3;
+							}
+							World.labirinto[x][y]=tile;
+							
+						}
 
+						
 						}
 						cont_line++;
-						p++;
+						
 					}
 				} catch (IOException e) {
 
@@ -96,7 +109,7 @@ public class Save_Game {
 				e.printStackTrace();
 			}
 		}
-*/
+
 	}
 
 }

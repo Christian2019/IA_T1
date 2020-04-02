@@ -13,60 +13,29 @@ import entities.Entity;
 import entities.Player;
 import graficos.ImageResizer;
 import main.Game;
+import main.Save_Game;
 import som.Sound;
 
 public class World {
 
 	public static Tile[] tiles;
 	public static int WIDTH, HEIGHT;
+	//0=chao 1=parede 2=buraco 3=S 4=entrada
+	public static int[][] labirinto;
 
 
 
-	public World(String path) {
-		try {
-			BufferedImage map = ImageIO.read(getClass().getResource(path));
-			int[] pixels = new int[map.getWidth() * map.getHeight()];
-			WIDTH = map.getWidth();
-			HEIGHT = map.getHeight();
-			tiles = new Tile[map.getWidth() * map.getHeight()];
-			map.getRGB(0, 0, map.getWidth(), map.getHeight(), pixels, 0, map.getWidth());
-
-			for (int x = 0; x < map.getWidth(); x++) {
-				for (int y = 0; y < map.getHeight(); y++) {
-					int pixelAtual = pixels[x + (y * map.getWidth())];
-					// Chao
-			//		tiles[x + (y * WIDTH)] = new Floor_Tile(x * Game.TILE_SIZE, y * Game.TILE_SIZE, Tile.TILE_FLOOR);
-					if (pixelAtual == 0xFFB200FF) {
-						// Parede
-					//	tiles[x + (y * WIDTH)] = new Wall_Tile(x * Game.TILE_SIZE, y * Game.TILE_SIZE, Tile.TILE_WALL);
-
-					}else if (pixelAtual == 0xFFFF0000) {
-						// Brick
-						//Brick brick = new Brick(x*Game.TILE_SIZE, y*Game.TILE_SIZE, 1*Game.TILE_SIZE, 1*Game.TILE_SIZE, null, 0, 2);
-						//Game.entities.add(brick);
-
-					}
- 
-						
-					
-					
-				}
-
+	public World() {
+		labirinto = new int[10][10];
+		Save_Game.load();
+		for (int y=0;y<10;y++) {
+			for (int x=0;x<10;x++) {
+				System.out.print(labirinto[x][y]+"");
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println();
 		}
 	}
-	public static void creat_tabuleiro(Graphics g) {
-		g.drawRect(91*Game.SCALE, 0, Game.WIDTH*Game.SCALE - 1, Game.HEIGHT*Game.SCALE - 1);
-		for (int i=0;i<9;i++) {
-			g.fillRect((91*Game.SCALE)+(i*(Game.HEIGHT*Game.SCALE/9)), 0, 1, (Game.HEIGHT*Game.SCALE));
-		}
-		for (int i=0;i<9;i++) {
-			g.fillRect((91*Game.SCALE), (i*(Game.HEIGHT*Game.SCALE/9)), (Game.WIDTH*Game.SCALE), 1);
-		}
-		}
+
 
 	public static boolean isFree(double x, double y) {
 		int xnext = (int) x;

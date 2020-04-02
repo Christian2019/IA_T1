@@ -14,6 +14,19 @@ public class AlgGen {
 
 	static int elite=100;
 	static int geracao=0;
+	static Random random = new Random();
+	public static void populacaoInicial() {
+		for (int i=0;i<5;i++) {
+			System.out.println("Cromossomo: "+i);
+			System.out.println();
+			for (int j=0;j<8;j++) {
+				int r =random.nextInt(8);
+				System.out.println(r);
+				}
+			
+		}
+		
+	}
 
 	 public static void callAG() {
 			

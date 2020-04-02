@@ -135,7 +135,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
-		
+		World w = new World();
 		// SCALE = 5;
 		game = new Game();
 		game.start();
