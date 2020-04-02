@@ -20,22 +20,18 @@ public class AlgGen {
 	boolean solucao_encontrada=false;
 	int solucao_x;
 	int[] solucao;
+	int[] elite;
 	public void callAG() {
 
 		int[][] matrizA = new int[populacao][tamanho_cromossomo];
-		int[][] matrizI = new int[populacao][tamanho_cromossomo];
-
+//Populacao inicial
 		populaMatriz(matrizA);
-
-		// playGod( matrizI, matrizA);
-		for (int x = 0; x < populacao; x++) {
-			System.out.println("Filho " + x);
-			calculaAptidao(matrizA, x);
-		}
-		System.out.println(this.matriz_Atual_Aptidoes);
+//Comeca a brincadeira
+		 playGod(matrizA);
 	}
 
-	public void playGod(int[][] matrizI, int[][] matrizA) {
+	public void playGod(int[][] matrizA) {
+		
 		this.matriz_Atual_Aptidoes.clear();
 		geracao = geracao + 1;
 
@@ -45,9 +41,11 @@ public class AlgGen {
 
 		System.out.println();
 
+		//Defini a aptidao de cada pessoa da populacao
 		for (int x = 0; x < populacao; x++) {
 			calculaAptidao(matrizA, x);
 		}
+		//Solucao encontrada para de rodar
 		if (this.solucao_encontrada) {
 		solucao= new int [this.tamanho_cromossomo];
 		for (int i=0;i<this.tamanho_cromossomo;i++) {
@@ -55,15 +53,34 @@ public class AlgGen {
 			
 			System.out.println("solucao encontrada!");
 			System.out.println(solucao);
-			return;
+			
+		}
+		return;		
 		}
 		
-		System.out.println();
+		System.out.println(this.matriz_Atual_Aptidoes);
+		//Define o melhor da populacao e joga na nova geracao
+		int x_elite=this.elitismo();
+		elite= new int[this.tamanho_cromossomo];
+		for (int i=0;i<this.tamanho_cromossomo;i++) {
+		elite[i]=matrizA[x_elite][i];	
+		}
+		System.out.println("elite:");
+		for (int i=0;i<this.tamanho_cromossomo;i++) {
+			System.out.print(elite[i]);
+				
 		}
 		System.out.println();
-		System.out.println("Elitísmo: " + linhaElite);
 		System.out.println();
-
+		
+		int[][] matrizI = new int[populacao][tamanho_cromossomo];
+		for (int i=0;i<this.tamanho_cromossomo;i++) {
+			matrizI[0][i]=elite[i];
+		}
+		this.imprimeMatriz(matrizI);
+		
+		//Crossover
+/*		
 		for (int x = 0; x < populacao; x++) {
 			crossover(matrizI, matrizA, i);
 
@@ -88,7 +105,25 @@ public class AlgGen {
 				playGod(matrizInext, matrizI);
 			}
 		}
-
+*/
+	}
+	public int elitismo() {
+		int elite=0;
+		int melhor_v1=0;
+		int melhor_v2=100;
+		for (int i=0;i<this.matriz_Atual_Aptidoes.size();i++) {
+			if (this.matriz_Atual_Aptidoes.get(i).v1>melhor_v1) {
+				melhor_v1=this.matriz_Atual_Aptidoes.get(i).v1;
+				elite=i;
+			}else if (this.matriz_Atual_Aptidoes.get(i).v1==melhor_v1) {
+				if (this.matriz_Atual_Aptidoes.get(i).v2<melhor_v2) {
+					melhor_v2=this.matriz_Atual_Aptidoes.get(i).v2;
+					elite=i;
+				}
+			}
+			
+		}
+		return elite;
 	}
 
 	public int[][] mutacao(int[][] matrizI) {
