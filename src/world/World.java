@@ -12,6 +12,7 @@ import com.sun.prism.paint.Color;
 import entities.Entity;
 import entities.Player;
 import graficos.ImageResizer;
+import main.AlgGen;
 import main.Game;
 import main.Save_Game;
 import som.Sound;
@@ -28,14 +29,19 @@ public class World {
 	public World() {
 		labirinto = new int[10][10];
 		Save_Game.load();
-		for (int y=0;y<10;y++) {
-			for (int x=0;x<10;x++) {
-				System.out.print(labirinto[x][y]+"");
-			}
-			System.out.println();
-		}
+		//imprimeWorld();
+		AlgGen ag = new AlgGen();
+		ag.callAG();
+		
 	}
-
+public void imprimeWorld() {
+	for (int y=0;y<10;y++) {
+		for (int x=0;x<10;x++) {
+			System.out.print(labirinto[x][y]+"");
+		}
+		System.out.println();
+	}
+}
 
 	public static boolean isFree(double x, double y) {
 		int xnext = (int) x;
