@@ -10,7 +10,7 @@ public class AlgGen {
 
 	// Trocavel
 	int populacao = 99; // Precisa ser impar>=5
-	int tamanho_cromossomo = 36; // Precisa ser par>=36
+	int tamanho_cromossomo = 37; // Preferencia>=36
 	int limitegeracao = 500;
 	double taxa_mutacao = 1; // % de ocorrer. Valor(entre 0.1-100)
 	//
