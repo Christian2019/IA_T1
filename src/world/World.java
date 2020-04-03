@@ -23,7 +23,8 @@ public class World {
 	public static int WIDTH, HEIGHT;
 	//0=chao 1=parede 2=buraco 3=S 4=entrada
 	public static int[][] labirinto;
-
+	public static int x_inicial;
+	public static int y_inicial;
 
 
 	public World() {

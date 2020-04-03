@@ -205,8 +205,8 @@ System.out.println();
 		for (int y = 0; y < tamanho_cromossomo; y++) {
 			cromossomo = cromossomo + vetor[y];
 		}
-		int x_atual = 0;
-		int y_atual = 0;
+		int x_atual = World.x_inicial;
+		int y_atual = World.y_inicial;
 
 		ArrayList<Ponto> casas = new ArrayList<Ponto>();
 		Ponto entrada = new Ponto(x_atual, y_atual);
@@ -247,8 +247,8 @@ System.out.println();
 		for (int y = 0; y < tamanho_cromossomo; y++) {
 			cromossomo = cromossomo + matriz[x][y];
 		}
-		int x_atual = 0;
-		int y_atual = 0;
+		int x_atual = World.x_inicial;
+		int y_atual = World.y_inicial;
 
 		ArrayList<Ponto> casas = new ArrayList<Ponto>();
 		Ponto entrada = new Ponto(x_atual, y_atual);

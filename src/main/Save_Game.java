@@ -63,14 +63,14 @@ public class Save_Game {
 	}
 
 	public static void load() {
-
+		String path="save3.txt";
 		int cont_line = 1;
 		
-		File file = new File("save.txt");
+		File file = new File(path);
 		if (file.exists()) {
 			String singleLine = null;
 			try {
-				BufferedReader reader = new BufferedReader(new FileReader("save.txt"));
+				BufferedReader reader = new BufferedReader(new FileReader(path));
 				try {
 					while ((singleLine = reader.readLine()) != null) {
 						if (cont_line>1) {
@@ -82,6 +82,8 @@ public class Save_Game {
 							//0=chao 1=parede 2=buraco 3=S 4=entrada
 							if (posicao_atual.equals("E")) {
 								tile=4;
+								World.x_inicial=x;
+								World.y_inicial=y;
 							}else if (posicao_atual.equals("0")) {
 								tile=0;
 							}else if (posicao_atual.equals("B")) {
@@ -90,7 +92,7 @@ public class Save_Game {
 								tile=1;
 							}else if (posicao_atual.equals("S")) {
 								tile=3;
-							}
+								}
 							World.labirinto[x][y]=tile;
 							
 						}
