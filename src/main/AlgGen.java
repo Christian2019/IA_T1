@@ -9,10 +9,10 @@ import world.World;
 public class AlgGen {
 
 	// Trocavel
-	int populacao = 99; // Precisa ser impar>=5
-	int tamanho_cromossomo = 37; // Preferencia>=36
-	int limitegeracao = 500;
-	double taxa_mutacao = 1; // % de ocorrer. Valor(entre 0.1-100)
+	int populacao = 1001; // Precisa ser impar Ideal 1001
+	int tamanho_cromossomo = 50; // Ideal 50
+	int limitegeracao = 1000;
+	double taxa_mutacao = 2; // % de ocorrer. Valor(entre 0.1-100) Ideal 2
 	//
 	int geracao = 0;
 	Random random = new Random();
@@ -67,7 +67,7 @@ public class AlgGen {
 		}
 
 		System.out.println("Populacao atual:");
-		this.imprimeMatriz(matrizA);
+	//	this.imprimeMatriz(matrizA);
 		System.out.println("Aptidoes:");
 		for (int i=0;i<this.matriz_Atual_Aptidoes.size();i++) {
 		System.out.print(this.matriz_Atual_Aptidoes.get(i));
