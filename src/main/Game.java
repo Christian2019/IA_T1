@@ -97,7 +97,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		// Inicializando objetos.
 		entities = new ArrayList<Entity>();
 		ui = new UI();
-		
+		try {
+			background= ImageIO.read(getClass().getResource("/background2.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		iniciar();
 	}
@@ -135,7 +140,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
-		World w = new World();
+	//	World w = new World();
 		// SCALE = 5;
 		game = new Game();
 		game.start();
@@ -204,7 +209,7 @@ boolean ft=true;
 		g.setColor(new Color(0, 0, 0));
 		//g.setColor(new Color(255, 255, 255));
 		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
-		
+		g.drawImage(background, 0, 0,WIDTH*SCALE,HEIGHT*SCALE, null);
 		
 		 ui.render(g);
 		

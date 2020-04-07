@@ -63,7 +63,7 @@ public class Save_Game {
 	}
 
 	public static void load() {
-		String path="save3.txt";
+		String path="save.txt";
 		int cont_line = 1;
 		
 		File file = new File(path);
