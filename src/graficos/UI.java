@@ -17,31 +17,29 @@ public class UI {
 
 	public Font font1 = new Font("Arial", Font.BOLD, Proporcoes.porcentagem(Proporcoes.X_Total, 3));
 	// Menu principal
-	// Botao editar mapa
-	int menuprincipal_botao_editarmapa_x = Proporcoes.porcentagem(Proporcoes.X_Total, 41);
+	int menuprincipal_botao_editarmapa_x = Proporcoes.porcentagem(Proporcoes.X_Total, 71);
 	int menuprincipal_botao_editarmapa_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 2);
 	int menuprincipal_botao_editarmapa_width = Proporcoes.porcentagem(Proporcoes.X_Total, 18);
 	int menuprincipal_botao_editarmapa_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
 	String menuprincipal_string_editarmapa_str = "Editar Mapa";
-	int menuprincipal_string_editarmapa_x = Proporcoes.porcentagem(Proporcoes.X_Total, 41.5);
+	int menuprincipal_string_editarmapa_x = Proporcoes.porcentagem(Proporcoes.X_Total, 71.5);
 	int menuprincipal_string_editarmapa_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 8.5);
 	// Botao A*
-	int menuprincipal_botao_astar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 66);
-	int menuprincipal_botao_astar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 50);
+	int menuprincipal_botao_astar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 71);
+	int menuprincipal_botao_astar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 30);
 	int menuprincipal_botao_astar_width = Proporcoes.porcentagem(Proporcoes.X_Total, 18);
 	int menuprincipal_botao_astar_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
 	String menuprincipal_string_astar_str = "A*";
-	int menuprincipal_string_astar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 74);
-	int menuprincipal_string_astar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 57);
+	int menuprincipal_string_astar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 78);
+	int menuprincipal_string_astar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 37);
 	// Botao AG
-	int menuprincipal_botao_ag_x = Proporcoes.porcentagem(Proporcoes.X_Total, 2);
-	int menuprincipal_botao_ag_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 50);
+	int menuprincipal_botao_ag_x = Proporcoes.porcentagem(Proporcoes.X_Total, 66);
+	int menuprincipal_botao_ag_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 58);
 	int menuprincipal_botao_ag_width = Proporcoes.porcentagem(Proporcoes.X_Total, 28);
 	int menuprincipal_botao_ag_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
 	String menuprincipal_string_ag_str = "Algoritmo Genético";
-	int menuprincipal_string_ag_x = Proporcoes.porcentagem(Proporcoes.X_Total, 2);
-	int menuprincipal_string_ag_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 57);
-
+	int menuprincipal_string_ag_x = Proporcoes.porcentagem(Proporcoes.X_Total, 66.5);
+	int menuprincipal_string_ag_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 64.5);
 	// A*
 	// painel
 	int astar_painel_x = Proporcoes.porcentagem(Proporcoes.X_Total, 80);
@@ -133,7 +131,7 @@ public class UI {
 		}
 
 		// painel
-		g.setColor(Color.gray);
+		g.setColor(Color.BLACK);
 		g.fillRect(astar_painel_x, astar_painel_y, astar_painel_width, astar_painel_height);
 		// botao play
 		g.setColor(Color.BLUE);
@@ -152,10 +150,11 @@ public class UI {
 	}
 
 	private void menu_principal(Graphics g) {
+				
 		if (!background) {
 			background = true;
 			try {
-				Game.background = ImageIO.read(getClass().getResource("/background2.jpg"));
+				Game.background = ImageIO.read(getClass().getResource("/background3.jpeg"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
