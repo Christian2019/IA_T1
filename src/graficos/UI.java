@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import main.Game;
 import main.Proporcoes;
 
@@ -12,60 +16,172 @@ import world.Camera;
 public class UI {
 
 	public Font font1 = new Font("Arial", Font.BOLD, Proporcoes.porcentagem(Proporcoes.X_Total, 3));
-//	int x=Proporcoes.porcentagem(Proporcoes.X_Total, 30);
-	
-public String state = "Menu principal"; 
-	public void render(Graphics g) {
-	if (state.equals("Menu principal")) {
-		menu_principal(g);
-	}
-		
-		
-	}
-	private void menu_principal(Graphics g) {
-		//Botao editar mapa
-		g.setColor(Color.BLUE);
-		int botao_editarmapa_x=Proporcoes.porcentagem(Proporcoes.X_Total, 41);
-		int botao_editarmapa_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 2);
-		int botao_editarmapa_width=Proporcoes.porcentagem(Proporcoes.X_Total, 18);
-		int botao_editarmapa_height=Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-		g.fillRect(botao_editarmapa_x, botao_editarmapa_y, botao_editarmapa_width, botao_editarmapa_height);
-		g.setColor(Color.white);
-		String string_editarmapa_str="Editar Mapa";
-		int string_editarmapa_x=Proporcoes.porcentagem(Proporcoes.X_Total, 41.5);
-		int string_editarmapa_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 8.5);
-		g.setFont(font1);
-		g.drawString(string_editarmapa_str, string_editarmapa_x, string_editarmapa_y);
-		
-		//Botao A*
-		g.setColor(Color.red);
-		int botao_astar_x=Proporcoes.porcentagem(Proporcoes.X_Total, 66);
-		int botao_astar_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 50);
-		int botao_astar_width=Proporcoes.porcentagem(Proporcoes.X_Total, 18);
-		int botao_astar_height=Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-		g.fillRect(botao_astar_x, botao_astar_y, botao_astar_width, botao_astar_height);
-		g.setColor(Color.white);
-		String string_astar_str="A*";
-		int string_astar_x=Proporcoes.porcentagem(Proporcoes.X_Total, 74);
-		int string_astar_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 57);
-		g.setFont(font1);
-		g.drawString(string_astar_str, string_astar_x, string_astar_y);
-		
-		//Botao AG
-				g.setColor(Color.GREEN);
-				int botao_ag_x=Proporcoes.porcentagem(Proporcoes.X_Total, 2);
-				int botao_ag_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 50);
-				int botao_ag_width=Proporcoes.porcentagem(Proporcoes.X_Total, 28);
-				int botao_ag_height=Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-				g.fillRect(botao_ag_x, botao_ag_y, botao_ag_width, botao_ag_height);
-				g.setColor(Color.white);
-				String string_ag_str="Algoritmo Genético";
-				int string_ag_x=Proporcoes.porcentagem(Proporcoes.X_Total, 2);
-				int string_ag_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 57);
-				g.setFont(font1);
-				g.drawString(string_ag_str, string_ag_x, string_ag_y);
-		
+	// Menu principal
+	// Botao editar mapa
+	int menuprincipal_botao_editarmapa_x = Proporcoes.porcentagem(Proporcoes.X_Total, 41);
+	int menuprincipal_botao_editarmapa_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 2);
+	int menuprincipal_botao_editarmapa_width = Proporcoes.porcentagem(Proporcoes.X_Total, 18);
+	int menuprincipal_botao_editarmapa_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	String menuprincipal_string_editarmapa_str = "Editar Mapa";
+	int menuprincipal_string_editarmapa_x = Proporcoes.porcentagem(Proporcoes.X_Total, 41.5);
+	int menuprincipal_string_editarmapa_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 8.5);
+	// Botao A*
+	int menuprincipal_botao_astar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 66);
+	int menuprincipal_botao_astar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 50);
+	int menuprincipal_botao_astar_width = Proporcoes.porcentagem(Proporcoes.X_Total, 18);
+	int menuprincipal_botao_astar_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	String menuprincipal_string_astar_str = "A*";
+	int menuprincipal_string_astar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 74);
+	int menuprincipal_string_astar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 57);
+	// Botao AG
+	int menuprincipal_botao_ag_x = Proporcoes.porcentagem(Proporcoes.X_Total, 2);
+	int menuprincipal_botao_ag_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 50);
+	int menuprincipal_botao_ag_width = Proporcoes.porcentagem(Proporcoes.X_Total, 28);
+	int menuprincipal_botao_ag_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	String menuprincipal_string_ag_str = "Algoritmo Genético";
+	int menuprincipal_string_ag_x = Proporcoes.porcentagem(Proporcoes.X_Total, 2);
+	int menuprincipal_string_ag_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 57);
+
+	// A*
+	// painel
+	int astar_painel_x = Proporcoes.porcentagem(Proporcoes.X_Total, 80);
+	int astar_painel_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 0);
+	int astar_painel_width = Proporcoes.porcentagem(Proporcoes.X_Total, 20);
+	int astar_painel_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 100);
+	// botao play
+	int astar_botao_play_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
+	int astar_botao_play_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 35);
+	int astar_botao_play_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
+	int astar_botao_play_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	// botao voltar
+	int astar_botao_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
+	int astar_botao_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 55);
+	int astar_botao_voltar_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
+	int astar_botao_voltar_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	// string play
+	String astar_string_play = "Play";
+	int astar_string_play_x = Proporcoes.porcentagem(Proporcoes.X_Total, 87);
+	int astar_string_play_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 41.5);
+	// string voltar
+	String astar_string_voltar = "Voltar";
+	int astar_string_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 86);
+	int astar_string_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 62);
+
+	public String state = "Menu principal";
+	boolean background = false;
+
+	public void tick() {
+		if (state.equals("Menu principal")) {
+			if (Game.mouseClicked) {
+				Game.mouseClicked = false;
+				// Botao ag
+				if ((Game.MX > menuprincipal_botao_ag_x && Game.MX < this.menuprincipal_botao_ag_width + menuprincipal_botao_ag_x)
+						&& (Game.MY > menuprincipal_botao_ag_y && Game.MY < this.menuprincipal_botao_ag_height + menuprincipal_botao_ag_y)) {
+					System.out.println("Botao AG");
+				}
+				// Botao editar mapa
+				else if ((Game.MX > menuprincipal_botao_editarmapa_x && Game.MX < this.menuprincipal_botao_editarmapa_width + menuprincipal_botao_editarmapa_x)
+						&& (Game.MY > menuprincipal_botao_editarmapa_y
+								&& Game.MY < this.menuprincipal_botao_editarmapa_height + menuprincipal_botao_editarmapa_y)) {
+					System.out.println("Editar mapa");
+				}
+				// Bota a*
+				else if ((Game.MX > menuprincipal_botao_astar_x && Game.MX < this.menuprincipal_botao_astar_width + menuprincipal_botao_astar_x)
+						&& (Game.MY > menuprincipal_botao_astar_y && Game.MY < this.menuprincipal_botao_astar_height + menuprincipal_botao_astar_y)) {
+					System.out.println("A*");
+					state = "astar";
+					background = false;
+				}
+			}
+		}else if (state.equals("astar")) {
+			if (Game.mouseClicked) {
+				Game.mouseClicked = false;
+				//botao play
+				if ((Game.MX > this.astar_botao_play_x && Game.MX < this.astar_botao_play_width + this.astar_botao_play_x)
+						&& (Game.MY > this.astar_botao_play_y && Game.MY < this.astar_botao_play_height + this.astar_botao_play_y)) {
+					System.out.println("Botao Play");
+				}
+				//botao voltar
+				else if ((Game.MX > this.astar_botao_voltar_x && Game.MX < this.astar_botao_voltar_width + this.astar_botao_voltar_x)
+						&& (Game.MY > this.astar_botao_voltar_y && Game.MY < this.astar_botao_voltar_height + this.astar_botao_voltar_y)) {
+					System.out.println("Botao Voltar");
+					state = "Menu principal";
+					background = false;
+				}
+			}
+		}
 	}
 
+	public void render(Graphics g) {
+		if (state.equals("Menu principal")) {
+			menu_principal(g);
+		} else if (state.equals("astar")) {
+			astar(g);
+		}
+
+	}
+
+	private void astar(Graphics g) {
+		if (!background) {
+			background = true;
+			try {
+				Game.background = ImageIO.read(getClass().getResource("/background.jpg"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		// painel
+		g.setColor(Color.gray);
+		g.fillRect(astar_painel_x, astar_painel_y, astar_painel_width, astar_painel_height);
+		// botao play
+		g.setColor(Color.BLUE);
+		g.fillRect(astar_botao_play_x, astar_botao_play_y, astar_botao_play_width, astar_botao_play_height);
+		// botao voltar
+		g.setColor(Color.BLUE);
+		g.fillRect(astar_botao_voltar_x, astar_botao_voltar_y, astar_botao_voltar_width, astar_botao_voltar_height);
+		g.setFont(font1);
+		// string play
+		g.setColor(Color.WHITE);
+		g.drawString(astar_string_play, astar_string_play_x, astar_string_play_y);
+		// string voltar
+		g.setColor(Color.WHITE);
+		g.drawString(astar_string_voltar, astar_string_voltar_x, astar_string_voltar_y);
+
+	}
+
+	private void menu_principal(Graphics g) {
+		if (!background) {
+			background = true;
+			try {
+				Game.background = ImageIO.read(getClass().getResource("/background2.jpg"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		// Botao editar mapa
+		g.setColor(Color.BLUE);
+		g.fillRect(menuprincipal_botao_editarmapa_x, menuprincipal_botao_editarmapa_y, menuprincipal_botao_editarmapa_width, menuprincipal_botao_editarmapa_height);
+		g.setColor(Color.white);
+		g.setFont(font1);
+		g.drawString(menuprincipal_string_editarmapa_str, menuprincipal_string_editarmapa_x, menuprincipal_string_editarmapa_y);
+
+		// Botao A*
+		g.setColor(Color.red);
+		g.fillRect(menuprincipal_botao_astar_x, menuprincipal_botao_astar_y, menuprincipal_botao_astar_width, menuprincipal_botao_astar_height);
+		g.setColor(Color.white);
+		g.setFont(font1);
+		g.drawString(menuprincipal_string_astar_str, menuprincipal_string_astar_x, menuprincipal_string_astar_y);
+
+		// Botao AG
+		g.setColor(Color.GREEN);
+		g.fillRect(menuprincipal_botao_ag_x, menuprincipal_botao_ag_y, menuprincipal_botao_ag_width, menuprincipal_botao_ag_height);
+		g.setColor(Color.white);
+		g.setFont(font1);
+		g.drawString(menuprincipal_string_ag_str, menuprincipal_string_ag_x, menuprincipal_string_ag_y);
+
+	}
 
 }

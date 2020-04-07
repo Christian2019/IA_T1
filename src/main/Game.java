@@ -42,7 +42,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	// Janela
 	public static JFrame frame;
 	public static final int WIDTH = 190;
-	public static final int HEIGHT = 99;
+	public static final int HEIGHT = 108;
 	public final static int TILE_SIZE = 11;
 	public static int SCALE = 1;
 	// Thread1
@@ -67,10 +67,10 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static int z = 0;
 
 	
-	static BufferedImage background;
+	public static BufferedImage background;
+	
 	public static int MX;
 	public static int MY;
-	
 	public static boolean mouseClicked;
 	
 
@@ -140,7 +140,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
-	//	World w = new World();
+		World w = new World();
 		// SCALE = 5;
 		game = new Game();
 		game.start();
@@ -164,7 +164,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	
 
 	public void tick() {
-		
+		ui.tick();
 		if (estado.equals("Paused")) {
 			if (this.pausedClicked) {
 				this.pausedClicked = false;
@@ -306,18 +306,7 @@ boolean ft=true;
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		/*
-		 * double proporcaoX = (double) (World.WIDTH * this.TILE_SIZE) / (double) (WIDTH
-		 * * SCALE); double proporcaoY = (double) (World.HEIGHT * this.TILE_SIZE) /
-		 * (double) (HEIGHT * SCALE); double correctionX = 1; double correctionY = 1;
-		 * double correction2X = 0; double correction2Y = 0; // Para mapas que usam a
-		 * camera if (z == 1) { correctionX = World.WIDTH * Game.TILE_SIZE /
-		 * (World.WIDTH * Game.TILE_SIZE - Camera.max_Camera_x()); correctionY =
-		 * World.HEIGHT * Game.TILE_SIZE / (World.HEIGHT * Game.TILE_SIZE -
-		 * Camera.max_Camera_y()); correction2X = Camera.x; correction2Y = Camera.y; }
-		 * // // UI.MouseX=correction2X+e.getX()*proporcaoX/correctionX; //
-		 * UI.MouseY=correction2Y+e.getY()*proporcaoY/correctionY;
-		 */
+		
 
 	}
 
@@ -340,8 +329,8 @@ boolean ft=true;
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		MX = e.getX() / SCALE;
-		MY = e.getY() / SCALE;
+		MX = e.getX();
+		MY = e.getY();
 		System.out.println("X: " + MX);
 		System.out.println("Y: " + MY);
 		mouseClicked = true;
