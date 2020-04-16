@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static JFrame frame;
 	public static final int WIDTH = 190;
 	public static final int HEIGHT = 108;
-	public final static int TILE_SIZE = 11;
+	public final static int TILE_SIZE = 32;
 	public static int SCALE = 1;
 	// Thread1
 	private static boolean isRunning;
@@ -77,13 +77,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static void iniciar() {
 		Sound.fundo.loop();
 		entities.clear();
-	
-	//	world = new World("/maps/m" + Game.Nivel + ".png");
-
-		image = new BufferedImage(9 * Game.TILE_SIZE, 9 * Game.TILE_SIZE,
-				BufferedImage.TYPE_INT_RGB);
-		// image = new BufferedImage(14, 19, BufferedImage.TYPE_INT_RGB);
-
+		image = new BufferedImage(WIDTH, HEIGHT,BufferedImage.TYPE_INT_RGB);
+		world = new World();
 	}
 
 	public Game() {
@@ -140,7 +135,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
-		World w = new World();
+		
 		// SCALE = 5;
 		game = new Game();
 		game.start();
@@ -165,26 +160,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void tick() {
 		ui.tick();
-		if (estado.equals("Paused")) {
-			if (this.pausedClicked) {
-				this.pausedClicked = false;
-				Sound.fundo.loop();
-				estado = "Game";
-			}
-		}
-		if (estado.equals("Game")) {
-			if (this.pausedClicked) {
-				this.pausedClicked = false;
-				Sound.fundo.pause();
-				estado = "Paused";
-			}
-
-			if (restart) {
-				restart = false;
-				iniciar();
-			}
-		
-		
+		world.depth(entities);
+		for (int i=0;i<entities.size();i++) {
+			entities.get(i).tick();
 		}
 	}
 
@@ -199,19 +177,24 @@ boolean ft=true;
 		}
 
 		Graphics g = image.getGraphics();
-		
-		// world.render(g);
-		// Inicio da Renderizacao
-	
-		// Fim da Renderizacao
+		Graphics g2 = World.mapa.getGraphics();
 		g.dispose();
 		g = bs.getDrawGraphics();
+		
 		g.setColor(new Color(0, 0, 0));
 		//g.setColor(new Color(255, 255, 255));
 		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
 		g.drawImage(background, 0, 0,WIDTH*SCALE,HEIGHT*SCALE, null);
+		world.render(g2);
+		for (int i=0;i<entities.size();i++) {
+			entities.get(i).render(g2);
+		}
+		if (ui.state.equals("astar")) {
+		g.drawImage(World.mapa, ((WIDTH*SCALE)-(HEIGHT*SCALE)-ui.astar_painel_width)/2, 0,HEIGHT*SCALE,HEIGHT*SCALE,null);
+	
 		
-		 ui.render(g);
+		}
+		ui.render(g);
 		
 		bs.show();
 		

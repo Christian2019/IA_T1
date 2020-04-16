@@ -102,9 +102,10 @@ public class AStar {
 				if (tile instanceof Wall_Tile) {
 					continue;
 				}
-				if (i == 0 || i == 2 || i == 6 || i == 8) {
-					continue;
-				}
+				//Movimento em diagonal
+		//		if (i == 0 || i == 2 || i == 6 || i == 8) {
+			//		continue;
+				//}
 
 				Vector2i a = new Vector2i(x + xi, y + yi);
 
@@ -179,6 +180,8 @@ public class AStar {
 					path.remove(path.size() - 1);
 				}
 
+			}else {
+				Game.ui.astar_ligado=false;
 			}
 		}
 	}

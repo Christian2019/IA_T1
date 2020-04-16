@@ -7,8 +7,9 @@ import java.util.Random;
 import main.Game;
 
 public class Tile {
-	public static BufferedImage TILE_FLOOR = Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 2*Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
+	public static BufferedImage TILE_FLOOR = Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 1*Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
 	public static BufferedImage TILE_WALL = Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 3*Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
+	public static BufferedImage TILE_HOLE = Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 2*Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
 	
 	protected BufferedImage sprite;
 	protected int x, y;
@@ -55,25 +56,9 @@ public class Tile {
 	}
 
 	public void render(Graphics g) {
-		if (Game.z==1) {
-		// Otimizando com a camera
-				double xstart = Camera.x - Game.TILE_SIZE;
-				double ystart = Camera.y - Game.TILE_SIZE;
-
-				double xfinal = xstart + (Game.WIDTH * Game.SCALE);
-				double yfinal = ystart + (Game.HEIGHT * Game.SCALE);
-
-				boolean ver = false;
-				if (x >= xstart && x <= xfinal && y >= ystart && y <= yfinal) {
-					ver = true;
-				}
-
-				if (ver) {
-					g.drawImage(sprite, (int) (x - Camera.x), (int) (y - Camera.y), null);
-				}
-		}else {
+		
 		g.drawImage(sprite, (int) (x), (int) (y), null);
-		}
+		
 	}
 
 }

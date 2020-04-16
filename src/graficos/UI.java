@@ -8,10 +8,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entities.Entity;
+import entities.Entrada;
+import entities.Player;
 import main.Game;
 import main.Proporcoes;
 
 import world.Camera;
+import world.World;
 
 public class UI {
 
@@ -44,7 +48,7 @@ public class UI {
 	// painel
 	int astar_painel_x = Proporcoes.porcentagem(Proporcoes.X_Total, 80);
 	int astar_painel_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 0);
-	int astar_painel_width = Proporcoes.porcentagem(Proporcoes.X_Total, 20);
+	public int astar_painel_width = Proporcoes.porcentagem(Proporcoes.X_Total, 20);
 	int astar_painel_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 100);
 	// botao play
 	int astar_botao_play_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
@@ -65,8 +69,9 @@ public class UI {
 	int astar_string_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 86);
 	int astar_string_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 62);
 
-	public String state = "Menu principal";
+	public static String state = "Menu principal";
 	boolean background = false;
+	public boolean astar_ligado=false;
 
 	public void tick() {
 		if (state.equals("Menu principal")) {
@@ -98,11 +103,26 @@ public class UI {
 				if ((Game.MX > this.astar_botao_play_x && Game.MX < this.astar_botao_play_width + this.astar_botao_play_x)
 						&& (Game.MY > this.astar_botao_play_y && Game.MY < this.astar_botao_play_height + this.astar_botao_play_y)) {
 					System.out.println("Botao Play");
+					if (this.astar_ligado==false) {
+					this.astar_ligado=true;
+					World.clearPlayers();
+					for (int i=0;i<Game.entities.size();i++) {
+						if (Game.entities.get(i) instanceof Entrada) {
+							Player player = new Player(Game.entities.get(i).x,Game.entities.get(i).y, Game.TILE_SIZE, Game.TILE_SIZE, Entity.PLAYER[0], 1, 1);	
+							Game.entities.add(player);
+							break;
+							
+						}
+					}
+					}else {
+						this.astar_ligado=false;
+					}
 				}
 				//botao voltar
 				else if ((Game.MX > this.astar_botao_voltar_x && Game.MX < this.astar_botao_voltar_width + this.astar_botao_voltar_x)
 						&& (Game.MY > this.astar_botao_voltar_y && Game.MY < this.astar_botao_voltar_height + this.astar_botao_voltar_y)) {
 					System.out.println("Botao Voltar");
+					this.astar_ligado=false;
 					state = "Menu principal";
 					background = false;
 				}

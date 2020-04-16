@@ -10,9 +10,19 @@ import main.Game;
 import world.Camera;
 
 public class Entity {
-	public static BufferedImage[] PORTAL_BLACK = {
-			Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 4 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
-			Game.spritesheet.getSprite(5 * Game.TILE_SIZE, 4 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE) };
+	public static BufferedImage ENTRADA =Game.spritesheet.getSprite
+			(0 * Game.TILE_SIZE, 5 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
+	public static BufferedImage SAIDA =Game.spritesheet.getSprite
+			(0 * Game.TILE_SIZE, 6 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
+	public static BufferedImage PLAYER[] = {Game.spritesheet.getSprite
+			(0 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(1 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(2 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(3 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE)
+			};
 	
 	public boolean left,right,up,down;
 	public double x;
@@ -66,25 +76,9 @@ public class Entity {
 	}
 
 	public void render(Graphics g) {
-		if (Game.z == 1) {
-			// Otimizando com a camera
-			double xstart = Camera.x - Game.TILE_SIZE;
-			double ystart = Camera.y - Game.TILE_SIZE;
-
-			double xfinal = xstart + (Game.WIDTH * Game.SCALE);
-			double yfinal = ystart + (Game.HEIGHT * Game.SCALE);
-
-			boolean ver = false;
-			if (x >= xstart && x <= xfinal && y >= ystart && y <= yfinal) {
-				ver = true;
-			}
-
-			if (ver) {
-				g.drawImage(sprite, (int) (x - Camera.x), (int) (y - Camera.y),width,height, null);
-			}
-		} else {
+	
 			g.drawImage(sprite, (int) x, (int) y, width, height, null);
-		}
+	
 	}
 
 	public void tick() {
