@@ -136,7 +136,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
 		
-		// SCALE = 5;
+	//	 SCALE = 5;
 		game = new Game();
 		game.start();
 	}
@@ -191,8 +191,7 @@ boolean ft=true;
 		}
 		if (ui.state.equals("astar")) {
 		g.drawImage(World.mapa, ((WIDTH*SCALE)-(HEIGHT*SCALE)-ui.astar_painel_width)/2, 0,HEIGHT*SCALE,HEIGHT*SCALE,null);
-	
-		
+			
 		}
 		ui.render(g);
 		
