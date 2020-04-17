@@ -66,18 +66,16 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	boolean zoom = false;
 	public static int z = 0;
 
-	
 	public static BufferedImage background;
-	
+
 	public static int MX;
 	public static int MY;
 	public static boolean mouseClicked;
-	
 
 	public static void iniciar() {
 		Sound.fundo.loop();
 		entities.clear();
-		image = new BufferedImage(WIDTH, HEIGHT,BufferedImage.TYPE_INT_RGB);
+		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		world = new World();
 	}
 
@@ -93,12 +91,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		entities = new ArrayList<Entity>();
 		ui = new UI();
 		try {
-			background= ImageIO.read(getClass().getResource("/background2.jpg"));
+			background = ImageIO.read(getClass().getResource("/background2.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		iniciar();
 	}
 
@@ -108,12 +106,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		frame.setResizable(false);
 		frame.pack();
 		spritesheet = new Spritesheet("/spritesheet.png");
-		
+
 		// Icone Mouse
 		// Toolkit toolkit = Toolkit.getDefaultToolkit();
 		// Cursor c = toolkit.createCustomCursor(icon, new Point(0, 0), "img");
 		// frame.setCursor(c);
-	//	 frame.setIconImage(icon);
+		// frame.setIconImage(icon);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -135,8 +133,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
-		
-	//	 SCALE = 5;
+
+		// SCALE = 5;
 		game = new Game();
 		game.start();
 	}
@@ -156,19 +154,17 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		}
 	}
 
-	
-
 	public void tick() {
 		ui.tick();
 		world.depth(entities);
-		for (int i=0;i<entities.size();i++) {
+		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).tick();
 		}
 	}
 
-	
-int load_frames=0;
-boolean ft=true;
+	int load_frames = 0;
+	boolean ft = true;
+
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -180,23 +176,26 @@ boolean ft=true;
 		Graphics g2 = World.mapa.getGraphics();
 		g.dispose();
 		g = bs.getDrawGraphics();
-		
+
 		g.setColor(new Color(0, 0, 0));
-		//g.setColor(new Color(255, 255, 255));
-		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
-		g.drawImage(background, 0, 0,WIDTH*SCALE,HEIGHT*SCALE, null);
+		// g.setColor(new Color(255, 255, 255));
+		g.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE);
+		g.drawImage(background, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		world.render(g2);
-		for (int i=0;i<entities.size();i++) {
+		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).render(g2);
 		}
 		if (ui.state.equals("astar")) {
-		g.drawImage(World.mapa, ((WIDTH*SCALE)-(HEIGHT*SCALE)-ui.astar_painel_width)/2, 0,HEIGHT*SCALE,HEIGHT*SCALE,null);
-			
+	//		g.drawImage(World.mapa, ((WIDTH * SCALE) - (HEIGHT * SCALE) - ui.astar_painel_width) / 2, 0, HEIGHT * SCALE,
+		//			HEIGHT * SCALE, null);
+					g.drawImage(World.mapa, Proporcoes.porcentagem(Proporcoes.X_Total, 25), 0, HEIGHT * SCALE,
+						HEIGHT * SCALE, null);
+
 		}
 		ui.render(g);
-		
+
 		bs.show();
-		
+
 	}
 
 	@Override
@@ -228,51 +227,36 @@ boolean ft=true;
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-	 if (e.getKeyCode() == KeyEvent.VK_P) {
-			this.pausedClicked = true;
-		}
-		if (estado.equals("Game")) {
-			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				// estado="Menu";
+		if (ui.state.equals("ag1")&&!(ui.ag1_selecionado==0)) {
+			if (e.getKeyCode() == KeyEvent.VK_0) {
+				Alphabet.vk_0 = true;
+			} else if (e.getKeyCode() == KeyEvent.VK_1) {
+				Alphabet.vk_1 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_2) {
+				Alphabet.vk_2 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_3) {
+				Alphabet.vk_3 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_4) {
+				Alphabet.vk_4 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_5) {
+				Alphabet.vk_5 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_6) {
+				Alphabet.vk_6 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_7) {
+				Alphabet.vk_7 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_8) {
+				Alphabet.vk_8 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_9) {
+				Alphabet.vk_9 = true;
+			}else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+				Alphabet.vk_backspace = true;
 			}
-			if (e.getKeyCode() == KeyEvent.VK_R) {
-				restart = true;
-			}
-
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				player.right = true;
-
-			} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				player.left = true;
-			}
-			if (e.getKeyCode() == KeyEvent.VK_UP) {
-
-			} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-
-			}
-			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-
-			}
-
 		}
 	}
 
-	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.right = false;
-		} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.left = false;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
 
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-
-		}
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-
-		}
 	}
 
 	@Override
@@ -288,7 +272,6 @@ boolean ft=true;
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		
 
 	}
 

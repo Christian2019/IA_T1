@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import entities.Entity;
 import entities.Entrada;
 import entities.Player;
+import main.Alphabet;
 import main.Game;
 import main.Proporcoes;
 
@@ -81,9 +82,10 @@ public class UI {
 	int ag1_painel2_width = Proporcoes.porcentagem(Proporcoes.X_Total, 25);
 	int ag1_painel2_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 100);
 	// texto feedback
-	String ag1_fb_str = "texto de feedback!";
-	int ag1_fb_x = Proporcoes.porcentagem(Proporcoes.X_Total, 4);
-	int ag1_fb_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 50);
+	String ag1_fb_str = "Digite os parâmetros";
+	int ag1_fb_x = Proporcoes.porcentagem(Proporcoes.X_Total, 46);
+	int ag1_fb_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
+	
 	// botao populacao
 	int ag1_botao_populacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
 	int ag1_botao_populacao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 3.75);
@@ -94,11 +96,11 @@ public class UI {
 	int ag1_botao_tamanho_cromossomo_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 17.5);
 	int ag1_botao_tamanho_cromossomo_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
 	int ag1_botao_tamanho_cromossomo_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-	// botao limite_populacao
-	int ag1_botao_limite_populacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
-	int ag1_botao_limite_populacao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 31.25);
-	int ag1_botao_limite_populacao_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
-	int ag1_botao_limite_populacao_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	// botao limite_geracao
+	int ag1_botao_limite_geracao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
+	int ag1_botao_limite_geracao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 31.25);
+	int ag1_botao_limite_geracao_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
+	int ag1_botao_limite_geracao_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
 	// botao taxa_mutacao
 	int ag1_botao_taxa_mutacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
 	int ag1_botao_taxa_mutacao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 45);
@@ -139,18 +141,18 @@ public class UI {
 	String ag1_string_tamanho_cromossomo_valor_str = "50";
 	int ag1_string_tamanho_cromossomo_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_tamanho_cromossomo_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 23.5);
-	// string limite_populacao
-	String ag1_string_limite_populacao_str = "Limite de";
-	int ag1_string_limite_populacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
-	int ag1_string_limite_populacao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 35.25);
-	// string limite_populacao2
-	String ag1_string_limite_populacao2_str = "população:";
-	int ag1_string_limite_populacao2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
-	int ag1_string_limite_populacao2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 40.25);
-	// string limite_populacao_valor
-	String ag1_string_limite_populacao_valor_str = "1000";
-	int ag1_string_limite_populacao_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
-	int ag1_string_limite_populacao_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 37.25);
+	// string limite_geracao
+	String ag1_string_limite_geracao_str = "Limite de";
+	int ag1_string_limite_geracao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
+	int ag1_string_limite_geracao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 35.25);
+	// string limite_geracao2
+	String ag1_string_limite_geracao2_str = "geração:";
+	int ag1_string_limite_geracao2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
+	int ag1_string_limite_geracao2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 40.25);
+	// string limite_geracao_valor
+	String ag1_string_limite_geracao_valor_str = "1000";
+	int ag1_string_limite_geracao_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
+	int ag1_string_limite_geracao_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 37.25);
 	// string taxa_mutacao
 	String ag1_string_taxa_mutacao_str = "Taxa de";
 	int ag1_string_taxa_mutacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
@@ -175,7 +177,11 @@ public class UI {
 	String ag1_string_comecar_str = "Começar";
 	int ag1_string_comecar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_comecar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 92.25);
-
+	//parametro selecionado
+	//0=nenhum 1=populacao 2=tamanho do cromossomo 3=limite de geracao 4=taxa de mutacao
+	public int ag1_selecionado=0;
+	
+	
 	public static String state = "Menu principal";
 	boolean background = false;
 	public boolean astar_ligado = false;
@@ -248,6 +254,68 @@ public class UI {
 				}
 			}
 		} else if (state.equals("ag1")) {
+			if (ag1_selecionado==1) {
+				String type = Alphabet.type();
+				if (this.ag1_string_populacao_valor_str.length()==0) {
+					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_populacao_valor_str=type;
+					}
+				}else if (this.ag1_string_populacao_valor_str.length()<8) {
+					if (!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_populacao_valor_str=ag1_string_populacao_valor_str+type;
+					}  
+				}  if (this.ag1_string_populacao_valor_str.length()>0) {
+					if (type.equals("backspace")) {
+						ag1_string_populacao_valor_str=ag1_string_populacao_valor_str.substring(0, ag1_string_populacao_valor_str.length()-1);
+					}
+				}
+			}else if (ag1_selecionado==2) {
+				String type = Alphabet.type();
+				if (this.ag1_string_tamanho_cromossomo_valor_str.length()==0) {
+					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_tamanho_cromossomo_valor_str=type;
+					}
+				}else if (this.ag1_string_tamanho_cromossomo_valor_str.length()<8) {
+					if (!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_tamanho_cromossomo_valor_str=ag1_string_tamanho_cromossomo_valor_str+type;
+					}  
+				}  if (this.ag1_string_tamanho_cromossomo_valor_str.length()>0) {
+					if (type.equals("backspace")) {
+						ag1_string_tamanho_cromossomo_valor_str=ag1_string_tamanho_cromossomo_valor_str.substring(0, ag1_string_tamanho_cromossomo_valor_str.length()-1);
+					}
+				}
+			} else if (ag1_selecionado==3) {
+				String type = Alphabet.type();
+				if (this.ag1_string_limite_geracao_valor_str.length()==0) {
+					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_limite_geracao_valor_str=type;
+					}
+				}else if (this.ag1_string_limite_geracao_valor_str.length()<8) {
+					if (!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_limite_geracao_valor_str=ag1_string_limite_geracao_valor_str+type;
+					}  
+				}  if (this.ag1_string_limite_geracao_valor_str.length()>0) {
+					if (type.equals("backspace")) {
+						ag1_string_limite_geracao_valor_str=ag1_string_limite_geracao_valor_str.substring(0, ag1_string_limite_geracao_valor_str.length()-1);
+					}
+				}
+			}else if (ag1_selecionado==4) {
+				String type = Alphabet.type();
+				if (this.ag1_string_taxa_mutacao_valor_str.length()==0) {
+					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_taxa_mutacao_valor_str=type;
+					}
+				}else if (this.ag1_string_taxa_mutacao_valor_str.length()<2) {
+					if (!type.equals("backspace")&&!type.equals("")) {
+						ag1_string_taxa_mutacao_valor_str=ag1_string_taxa_mutacao_valor_str+type;
+					}  
+				}  if (this.ag1_string_taxa_mutacao_valor_str.length()>0) {
+					if (type.equals("backspace")) {
+						ag1_string_taxa_mutacao_valor_str=ag1_string_taxa_mutacao_valor_str.substring(0, ag1_string_taxa_mutacao_valor_str.length()-1);
+					}
+				}
+			}
+			
 			if (Game.mouseClicked) {
 				Game.mouseClicked = false;
 				// Botao voltar
@@ -256,8 +324,63 @@ public class UI {
 						&& (Game.MY > ag1_botao_voltar_y
 								&& Game.MY < this.ag1_botao_voltar_height + ag1_botao_voltar_y)) {
 					System.out.println("Botao voltar");
+					ag1_selecionado=0;
 					state = "Menu principal";
 					background = false;
+				}
+				// Botao populacao
+				else if ((Game.MX > ag1_botao_populacao_x
+						&& Game.MX < this.ag1_botao_populacao_width + ag1_botao_populacao_x)
+						&& (Game.MY > ag1_botao_populacao_y
+								&& Game.MY < this.ag1_botao_populacao_height + ag1_botao_populacao_y)) {
+					System.out.println("Botao populacao");
+					ag1_selecionado=1;
+					
+				}
+				// Botao tamanho_cromossomo
+				else if ((Game.MX > ag1_botao_tamanho_cromossomo_x
+						&& Game.MX < this.ag1_botao_tamanho_cromossomo_width + ag1_botao_tamanho_cromossomo_x)
+						&& (Game.MY > ag1_botao_tamanho_cromossomo_y
+								&& Game.MY < this.ag1_botao_tamanho_cromossomo_height + ag1_botao_tamanho_cromossomo_y)) {
+					System.out.println("Botao tamanho do cromossomo");
+					ag1_selecionado=2;
+					
+				}
+				// Botao limite_geracao
+				else if ((Game.MX > ag1_botao_limite_geracao_x
+						&& Game.MX < this.ag1_botao_limite_geracao_width + ag1_botao_limite_geracao_x)
+						&& (Game.MY > ag1_botao_limite_geracao_y
+								&& Game.MY < this.ag1_botao_limite_geracao_height + ag1_botao_limite_geracao_y)) {
+					System.out.println("Botao limite de geracao");
+					ag1_selecionado=3;
+					
+				}
+				// Botao taxa_mutacao
+				else if ((Game.MX > ag1_botao_taxa_mutacao_x
+						&& Game.MX < this.ag1_botao_taxa_mutacao_width + ag1_botao_taxa_mutacao_x)
+						&& (Game.MY > ag1_botao_taxa_mutacao_y
+								&& Game.MY < this.ag1_botao_taxa_mutacao_height + ag1_botao_taxa_mutacao_y)) {
+					System.out.println("Botao taxa de mutacao");
+					ag1_selecionado=4;
+					
+				}
+				// Botao gerar
+				else if ((Game.MX > ag1_botao_gerar_x
+						&& Game.MX < this.ag1_botao_gerar_width + ag1_botao_gerar_x)
+						&& (Game.MY > ag1_botao_gerar_y
+								&& Game.MY < this.ag1_botao_gerar_height + ag1_botao_gerar_y)) {
+					System.out.println("Botao gerar");
+					ag1_selecionado=0;
+					
+				}
+				// Botao comecar
+				else if ((Game.MX > ag1_botao_comecar_x
+						&& Game.MX < this.ag1_botao_comecar_width + ag1_botao_comecar_x)
+						&& (Game.MY > ag1_botao_comecar_y
+								&& Game.MY < this.ag1_botao_comecar_height + ag1_botao_comecar_y)) {
+					System.out.println("Botao comecar");
+					ag1_selecionado=0;
+					
 				}
 			}
 		}
@@ -284,20 +407,27 @@ public class UI {
 				e.printStackTrace();
 			}
 		}
-
+		
 		g.setColor(Color.black);
 		g.setFont(font2);
 		// painel1
 		g.fillRect(ag1_painel_x, ag1_painel_y, ag1_painel_width, ag1_painel_height);
 		// painel2
-		g.fillRect(ag1_painel2_x, ag1_painel2_y, ag1_painel2_width, ag1_painel2_height);
-		g.setColor(Color.white);
+//		g.setColor(Color.BLUE);
+//		g.fillRect(ag1_painel2_x, ag1_painel2_y, ag1_painel2_width, ag1_painel2_height);
 		// texto feedback
+		
+		g.setColor(Color.RED);
+			
 		g.drawString(ag1_fb_str, ag1_fb_x, ag1_fb_y);
+		
 		// botao populacao
 		g.setColor(Color.white);
 		g.fillRect(ag1_botao_populacao_x, ag1_botao_populacao_y, ag1_botao_populacao_width, ag1_botao_populacao_height);
 		g.setColor(Color.BLUE);
+		if (this.ag1_selecionado==1) {
+			g.setColor(Color.RED);
+		}
 		g.drawRect(ag1_botao_populacao_x, ag1_botao_populacao_y, ag1_botao_populacao_width, ag1_botao_populacao_height);
 		g.setColor(Color.BLUE);
 		g.drawString(ag1_string_populacao_str, ag1_string_populacao_x, ag1_string_populacao_y);
@@ -308,6 +438,9 @@ public class UI {
 		g.fillRect(ag1_botao_tamanho_cromossomo_x, ag1_botao_tamanho_cromossomo_y, ag1_botao_tamanho_cromossomo_width,
 				ag1_botao_tamanho_cromossomo_height);
 		g.setColor(Color.BLUE);
+		if (this.ag1_selecionado==2) {
+			g.setColor(Color.RED);
+		}
 		g.drawRect(ag1_botao_tamanho_cromossomo_x, ag1_botao_tamanho_cromossomo_y, ag1_botao_tamanho_cromossomo_width,
 				ag1_botao_tamanho_cromossomo_height);
 		g.setColor(Color.BLUE);
@@ -318,24 +451,30 @@ public class UI {
 		g.setColor(Color.RED);
 		g.drawString(ag1_string_tamanho_cromossomo_valor_str, ag1_string_tamanho_cromossomo_valor_x,
 				ag1_string_tamanho_cromossomo_valor_y);
-		// botao limite_populacao
+		// botao limite_geracao
 		g.setColor(Color.white);
-		g.fillRect(ag1_botao_limite_populacao_x, ag1_botao_limite_populacao_y, ag1_botao_limite_populacao_width,
-				ag1_botao_limite_populacao_height);
+		g.fillRect(ag1_botao_limite_geracao_x, ag1_botao_limite_geracao_y, ag1_botao_limite_geracao_width,
+				ag1_botao_limite_geracao_height);
 		g.setColor(Color.BLUE);
-		g.drawRect(ag1_botao_limite_populacao_x, ag1_botao_limite_populacao_y, ag1_botao_limite_populacao_width,
-				ag1_botao_limite_populacao_height);
+		if (this.ag1_selecionado==3) {
+			g.setColor(Color.RED);
+		}
+		g.drawRect(ag1_botao_limite_geracao_x, ag1_botao_limite_geracao_y, ag1_botao_limite_geracao_width,
+				ag1_botao_limite_geracao_height);
 		g.setColor(Color.BLUE);
-		g.drawString(ag1_string_limite_populacao_str, ag1_string_limite_populacao_x, ag1_string_limite_populacao_y);
-		g.drawString(ag1_string_limite_populacao2_str, ag1_string_limite_populacao2_x, ag1_string_limite_populacao2_y);
+		g.drawString(ag1_string_limite_geracao_str, ag1_string_limite_geracao_x, ag1_string_limite_geracao_y);
+		g.drawString(ag1_string_limite_geracao2_str, ag1_string_limite_geracao2_x, ag1_string_limite_geracao2_y);
 		g.setColor(Color.RED);
-		g.drawString(ag1_string_limite_populacao_valor_str, ag1_string_limite_populacao_valor_x,
-				ag1_string_limite_populacao_valor_y);
+		g.drawString(ag1_string_limite_geracao_valor_str, ag1_string_limite_geracao_valor_x,
+				ag1_string_limite_geracao_valor_y);
 		// botao taxa_mutacao
 		g.setColor(Color.white);
 		g.fillRect(ag1_botao_taxa_mutacao_x, ag1_botao_taxa_mutacao_y, ag1_botao_taxa_mutacao_width,
 				ag1_botao_taxa_mutacao_height);
 		g.setColor(Color.BLUE);
+		if (this.ag1_selecionado==4) {
+			g.setColor(Color.RED);
+		}
 		g.drawRect(ag1_botao_taxa_mutacao_x, ag1_botao_taxa_mutacao_y, ag1_botao_taxa_mutacao_width,
 				ag1_botao_taxa_mutacao_height);
 		g.setColor(Color.BLUE);
@@ -366,7 +505,7 @@ public class UI {
 		if (!background) {
 			background = true;
 			try {
-				Game.background = ImageIO.read(getClass().getResource("/background.jpg"));
+				Game.background = ImageIO.read(getClass().getResource("/background4.jpeg"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -375,7 +514,7 @@ public class UI {
 
 		// painel
 		g.setColor(Color.BLACK);
-		g.fillRect(astar_painel_x, astar_painel_y, astar_painel_width, astar_painel_height);
+//		g.fillRect(astar_painel_x, astar_painel_y, astar_painel_width, astar_painel_height);
 		// botao play
 		g.setColor(Color.BLUE);
 		g.fillRect(astar_botao_play_x, astar_botao_play_y, astar_botao_play_width, astar_botao_play_height);
