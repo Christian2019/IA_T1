@@ -34,8 +34,7 @@ public class World {
 		labirinto = new int[10][10];
 		Save_Game.load();
 		imprimeWorld();
-	//	AlgGen ag = new AlgGen();
-	//	ag.callAG();
+	
 		tiles = new Tile [WIDTH*HEIGHT];
 		for (int x=0;x<10;x++) {
 			for (int y=0;y<10;y++) {

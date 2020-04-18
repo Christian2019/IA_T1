@@ -73,7 +73,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static boolean mouseClicked;
 
 	public static void iniciar() {
-		Sound.fundo.loop();
+		Sound.fundo2.loop();
 		entities.clear();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		world = new World();
@@ -195,6 +195,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		ui.render(g);
 
 		bs.show();
+	
 
 	}
 

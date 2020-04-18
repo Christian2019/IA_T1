@@ -17,6 +17,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class Sound {
 
 	public static Clips fundo= load("/fundo.wav",1);
+	public static Clips fundo2= load("/fundo2.wav",1);
 	
 	
 

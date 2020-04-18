@@ -8,53 +8,102 @@ import world.World;
 
 public class AlgGen {
 
+	public ArrayList<Geracao> Geracoes;
+
 	// Trocavel
 	int populacao = 1001; // Precisa ser impar Ideal 1001
 	int tamanho_cromossomo = 50; // Ideal 50
 	int limitegeracao = 1000;
 	double taxa_mutacao = 2; // % de ocorrer. Valor(entre 0.1-100) Ideal 2
 	//
-	int geracao = 0;
+	int geracao;
 	Random random = new Random();
 	// Movimentos 0=NW 1=N 2=NE 3=E 4=SE 5=S 6=SW 7=W
 	ArrayList<Aptidao> matriz_Atual_Aptidoes = new ArrayList<Aptidao>();
-	boolean solucao_encontrada = false;
+	public boolean solucao_encontrada=false;
 	int solucao_x;
 	int[] solucao;
 	int[] elite;
 
-	public void callAG() {
-
+	public void callAG(int p,int tc, int lg, double tm) {
+		this.populacao=p;
+		this.tamanho_cromossomo=tc;
+		this.limitegeracao=lg;
+		this.taxa_mutacao=tm;
+		Geracoes = new ArrayList<Geracao>();
+		geracao=-1;
+		solucao_encontrada = false;
 		int[][] matrizA = new int[populacao][tamanho_cromossomo];
-//Populacao inicial
+		// Populacao inicial
 		populaMatriz(matrizA);
-//Comeca a brincadeira
+		// Comeca a brincadeira
 		playGod(matrizA);
 	}
 
 	public void playGod(int[][] matrizA) {
-
 		this.matriz_Atual_Aptidoes.clear();
 		geracao = geracao + 1;
-
 		System.out.println();
-
 		System.out.println("Geracao: " + geracao);
-
 		System.out.println();
 
 		// Defini a aptidao de cada pessoa da populacao
 		for (int x = 0; x < populacao; x++) {
 			calculaAptidao(matrizA, x);
 		}
+
+		System.out.println("Populacao atual:");
+//		this.imprimeMatriz(matrizA);
+		System.out.println("Aptidoes:");
+		for (int i = 0; i < this.matriz_Atual_Aptidoes.size(); i++) {
+			System.out.print(this.matriz_Atual_Aptidoes.get(i));
+		}
+		System.out.println();
+
+		// Define o melhor da populacao e joga na nova geracao
+		int x_elite = this.elitismo();
+		elite = new int[this.tamanho_cromossomo];
+		for (int i = 0; i < this.tamanho_cromossomo; i++) {
+			elite[i] = matrizA[x_elite][i];
+		}
+		System.out.println("elite:");
+		for (int i = 0; i < this.tamanho_cromossomo; i++) {
+			System.out.print(elite[i]);
+		}
+		System.out.println();
+		System.out.println("Aptidao elite: " + this.matriz_Atual_Aptidoes.get(x_elite));
+		int[][] matrizI = new int[populacao][tamanho_cromossomo];
+		for (int i = 0; i < this.tamanho_cromossomo; i++) {
+			matrizI[0][i] = elite[i];
+		}
+
+		// Grava geracao
+		// Populacao
+		ArrayList<String> array_populacao = new ArrayList<String>();
+		for (int x = 0; x < populacao; x++) {
+			String cromossomo = "";
+			for (int y = 0; y < this.tamanho_cromossomo; y++) {
+				cromossomo = cromossomo + matrizA[x][y];
+			}
+			array_populacao.add(cromossomo);
+		}
+		ArrayList<Aptidao> aptidoes = new ArrayList<Aptidao>();
+		for (int i = 0; i < this.matriz_Atual_Aptidoes.size(); i++) {
+			aptidoes.add(matriz_Atual_Aptidoes.get(i));
+		}
+		String elite_str = "";
+		for (int i = 0; i < this.tamanho_cromossomo; i++) {
+			elite_str = elite_str + elite[i];
+		}
+		Aptidao aptidao_elite = this.matriz_Atual_Aptidoes.get(x_elite);
+		Geracao geracao = new Geracao(array_populacao, aptidoes, elite_str, aptidao_elite);
+		this.Geracoes.add(geracao);				
 		// Solucao encontrada para de rodar
 		if (this.solucao_encontrada) {
 			solucao = new int[this.tamanho_cromossomo];
 			for (int i = 0; i < this.tamanho_cromossomo; i++) {
 				solucao[i] = matrizA[this.solucao_x][i];
-
 			}
-
 			this.imprimeVetor(solucao);
 			System.out.println();
 			ArrayList<Ponto> casas = new ArrayList<Ponto>();
@@ -66,37 +115,8 @@ public class AlgGen {
 			return;
 		}
 
-		System.out.println("Populacao atual:");
-	//	this.imprimeMatriz(matrizA);
-		System.out.println("Aptidoes:");
-		for (int i=0;i<this.matriz_Atual_Aptidoes.size();i++) {
-		System.out.print(this.matriz_Atual_Aptidoes.get(i));
-		}
-System.out.println();
-		// Define o melhor da populacao e joga na nova geracao
-		int x_elite = this.elitismo();
-		elite = new int[this.tamanho_cromossomo];
-		for (int i = 0; i < this.tamanho_cromossomo; i++) {
-			elite[i] = matrizA[x_elite][i];
-		}
-
-		System.out.println("elite:");
-		for (int i = 0; i < this.tamanho_cromossomo; i++) {
-			System.out.print(elite[i]);
-
-		}
-		System.out.println();
-		System.out.println("Aptidao elite: " + this.matriz_Atual_Aptidoes.get(x_elite));
-
-		int[][] matrizI = new int[populacao][tamanho_cromossomo];
-		for (int i = 0; i < this.tamanho_cromossomo; i++) {
-			matrizI[0][i] = elite[i];
-		}
-
 		// Torneio;
-
 		ArrayList<int[]> filhos = new ArrayList<int[]>();
-
 		for (int i = 0; i < populacao - 1; i += 2) {
 			boolean iguais = true;
 			int pai = 0;
@@ -108,17 +128,15 @@ System.out.println();
 					iguais = false;
 				}
 			}
+
 			// Crossover
 			crossover(pai, mae, filhos, matrizA);
 		}
-		/*
-		 * for (int i=0;i<filhos.size();i++) { System.out.println();
-		 * this.imprimeVetor(filhos.get(i)); } System.out.println();
-		 */
+
 		// Mutacao
 		mutacao(filhos);
 
-		// nova geracao pronta
+		// Nova geracao pronta
 		for (int x = 1; x < this.populacao; x++) {
 			for (int y = 0; y < this.tamanho_cromossomo; y++) {
 				matrizI[x][y] = filhos.get(x - 1)[y];
@@ -130,7 +148,6 @@ System.out.println();
 			return;
 		}
 		playGod(matrizI);
-
 	}
 
 	public int elitismo() {
@@ -159,7 +176,7 @@ System.out.println();
 		for (int i = 0; i < filhos.size(); i++) {
 			for (int j = 0; j < filhos.get(i).length; j++) {
 				if (random.nextInt(1000) <= chance) {
-				//	System.out.println("MUTACAO!");
+					// System.out.println("MUTACAO!");
 					int novo_movimento = random.nextInt(8);
 					filhos.get(i)[j] = novo_movimento;
 				}

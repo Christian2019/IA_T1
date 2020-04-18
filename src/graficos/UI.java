@@ -11,10 +11,11 @@ import javax.imageio.ImageIO;
 import entities.Entity;
 import entities.Entrada;
 import entities.Player;
+import main.AlgGen;
 import main.Alphabet;
 import main.Game;
 import main.Proporcoes;
-
+import main.Save_Game;
 import world.Camera;
 import world.World;
 
@@ -85,7 +86,7 @@ public class UI {
 	String ag1_fb_str = "Digite os parâmetros";
 	int ag1_fb_x = Proporcoes.porcentagem(Proporcoes.X_Total, 46);
 	int ag1_fb_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
-	
+
 	// botao populacao
 	int ag1_botao_populacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
 	int ag1_botao_populacao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 3.75);
@@ -126,7 +127,7 @@ public class UI {
 	int ag1_string_populacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_populacao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 9.75);
 	// string populacao_valor
-	String ag1_string_populacao_valor_str = "1001";
+	String ag1_string_populacao_valor_str = "11";
 	int ag1_string_populacao_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_populacao_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 9.75);
 	// string tamanho_cromossomo1
@@ -177,16 +178,19 @@ public class UI {
 	String ag1_string_comecar_str = "Começar";
 	int ag1_string_comecar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_comecar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 92.25);
-	//parametro selecionado
-	//0=nenhum 1=populacao 2=tamanho do cromossomo 3=limite de geracao 4=taxa de mutacao
-	public int ag1_selecionado=0;
-	
-	
+	// parametro selecionado
+	// 0=nenhum 1=populacao 2=tamanho do cromossomo 3=limite de geracao 4=taxa de
+	// mutacao
+	public int ag1_selecionado = 0;
+
 	public static String state = "Menu principal";
 	boolean background = false;
 	public boolean astar_ligado = false;
+	boolean permissao_comecar=false;
+	
 
 	public void tick() {
+		
 		if (state.equals("Menu principal")) {
 			if (Game.mouseClicked) {
 				Game.mouseClicked = false;
@@ -254,78 +258,87 @@ public class UI {
 				}
 			}
 		} else if (state.equals("ag1")) {
-			if (ag1_selecionado==1) {
+			if (ag1_selecionado == 1) {
 				String type = Alphabet.type();
-				if (this.ag1_string_populacao_valor_str.length()==0) {
-					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_populacao_valor_str=type;
+				if (this.ag1_string_populacao_valor_str.length() == 0) {
+					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
+						ag1_string_populacao_valor_str = type;
 					}
-				}else if (this.ag1_string_populacao_valor_str.length()<8) {
-					if (!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_populacao_valor_str=ag1_string_populacao_valor_str+type;
-					}  
-				}  if (this.ag1_string_populacao_valor_str.length()>0) {
-					if (type.equals("backspace")) {
-						ag1_string_populacao_valor_str=ag1_string_populacao_valor_str.substring(0, ag1_string_populacao_valor_str.length()-1);
+				} else if (this.ag1_string_populacao_valor_str.length() < 8) {
+					if (!type.equals("backspace") && !type.equals("")) {
+						ag1_string_populacao_valor_str = ag1_string_populacao_valor_str + type;
 					}
 				}
-			}else if (ag1_selecionado==2) {
-				String type = Alphabet.type();
-				if (this.ag1_string_tamanho_cromossomo_valor_str.length()==0) {
-					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_tamanho_cromossomo_valor_str=type;
-					}
-				}else if (this.ag1_string_tamanho_cromossomo_valor_str.length()<8) {
-					if (!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_tamanho_cromossomo_valor_str=ag1_string_tamanho_cromossomo_valor_str+type;
-					}  
-				}  if (this.ag1_string_tamanho_cromossomo_valor_str.length()>0) {
+				if (this.ag1_string_populacao_valor_str.length() > 0) {
 					if (type.equals("backspace")) {
-						ag1_string_tamanho_cromossomo_valor_str=ag1_string_tamanho_cromossomo_valor_str.substring(0, ag1_string_tamanho_cromossomo_valor_str.length()-1);
+						ag1_string_populacao_valor_str = ag1_string_populacao_valor_str.substring(0,
+								ag1_string_populacao_valor_str.length() - 1);
 					}
 				}
-			} else if (ag1_selecionado==3) {
+			} else if (ag1_selecionado == 2) {
 				String type = Alphabet.type();
-				if (this.ag1_string_limite_geracao_valor_str.length()==0) {
-					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_limite_geracao_valor_str=type;
+				if (this.ag1_string_tamanho_cromossomo_valor_str.length() == 0) {
+					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
+						ag1_string_tamanho_cromossomo_valor_str = type;
 					}
-				}else if (this.ag1_string_limite_geracao_valor_str.length()<8) {
-					if (!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_limite_geracao_valor_str=ag1_string_limite_geracao_valor_str+type;
-					}  
-				}  if (this.ag1_string_limite_geracao_valor_str.length()>0) {
-					if (type.equals("backspace")) {
-						ag1_string_limite_geracao_valor_str=ag1_string_limite_geracao_valor_str.substring(0, ag1_string_limite_geracao_valor_str.length()-1);
+				} else if (this.ag1_string_tamanho_cromossomo_valor_str.length() < 8) {
+					if (!type.equals("backspace") && !type.equals("")) {
+						ag1_string_tamanho_cromossomo_valor_str = ag1_string_tamanho_cromossomo_valor_str + type;
 					}
 				}
-			}else if (ag1_selecionado==4) {
-				String type = Alphabet.type();
-				if (this.ag1_string_taxa_mutacao_valor_str.length()==0) {
-					if (!type.equals("0")&&!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_taxa_mutacao_valor_str=type;
-					}
-				}else if (this.ag1_string_taxa_mutacao_valor_str.length()<2) {
-					if (!type.equals("backspace")&&!type.equals("")) {
-						ag1_string_taxa_mutacao_valor_str=ag1_string_taxa_mutacao_valor_str+type;
-					}  
-				}  if (this.ag1_string_taxa_mutacao_valor_str.length()>0) {
+				if (this.ag1_string_tamanho_cromossomo_valor_str.length() > 0) {
 					if (type.equals("backspace")) {
-						ag1_string_taxa_mutacao_valor_str=ag1_string_taxa_mutacao_valor_str.substring(0, ag1_string_taxa_mutacao_valor_str.length()-1);
+						ag1_string_tamanho_cromossomo_valor_str = ag1_string_tamanho_cromossomo_valor_str.substring(0,
+								ag1_string_tamanho_cromossomo_valor_str.length() - 1);
+					}
+				}
+			} else if (ag1_selecionado == 3) {
+				String type = Alphabet.type();
+				if (this.ag1_string_limite_geracao_valor_str.length() == 0) {
+					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
+						ag1_string_limite_geracao_valor_str = type;
+					}
+				} else if (this.ag1_string_limite_geracao_valor_str.length() < 8) {
+					if (!type.equals("backspace") && !type.equals("")) {
+						ag1_string_limite_geracao_valor_str = ag1_string_limite_geracao_valor_str + type;
+					}
+				}
+				if (this.ag1_string_limite_geracao_valor_str.length() > 0) {
+					if (type.equals("backspace")) {
+						ag1_string_limite_geracao_valor_str = ag1_string_limite_geracao_valor_str.substring(0,
+								ag1_string_limite_geracao_valor_str.length() - 1);
+					}
+				}
+			} else if (ag1_selecionado == 4) {
+				String type = Alphabet.type();
+				if (this.ag1_string_taxa_mutacao_valor_str.length() == 0) {
+					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
+						ag1_string_taxa_mutacao_valor_str = type;
+					}
+				} else if (this.ag1_string_taxa_mutacao_valor_str.length() < 2) {
+					if (!type.equals("backspace") && !type.equals("")) {
+						ag1_string_taxa_mutacao_valor_str = ag1_string_taxa_mutacao_valor_str + type;
+					}
+				}
+				if (this.ag1_string_taxa_mutacao_valor_str.length() > 0) {
+					if (type.equals("backspace")) {
+						ag1_string_taxa_mutacao_valor_str = ag1_string_taxa_mutacao_valor_str.substring(0,
+								ag1_string_taxa_mutacao_valor_str.length() - 1);
 					}
 				}
 			}
-			
+
 			if (Game.mouseClicked) {
 				Game.mouseClicked = false;
 				// Botao voltar
-				if ((Game.MX > ag1_botao_voltar_x
-						&& Game.MX < this.ag1_botao_voltar_width + ag1_botao_voltar_x)
+				if ((Game.MX > ag1_botao_voltar_x && Game.MX < this.ag1_botao_voltar_width + ag1_botao_voltar_x)
 						&& (Game.MY > ag1_botao_voltar_y
 								&& Game.MY < this.ag1_botao_voltar_height + ag1_botao_voltar_y)) {
 					System.out.println("Botao voltar");
-					ag1_selecionado=0;
+					ag1_selecionado = 0;
+					ag1_fb_str = "Digite os parâmetros";
 					state = "Menu principal";
+					permissao_comecar=false;
 					background = false;
 				}
 				// Botao populacao
@@ -334,17 +347,18 @@ public class UI {
 						&& (Game.MY > ag1_botao_populacao_y
 								&& Game.MY < this.ag1_botao_populacao_height + ag1_botao_populacao_y)) {
 					System.out.println("Botao populacao");
-					ag1_selecionado=1;
-					
+					ag1_selecionado = 1;
+
 				}
 				// Botao tamanho_cromossomo
 				else if ((Game.MX > ag1_botao_tamanho_cromossomo_x
 						&& Game.MX < this.ag1_botao_tamanho_cromossomo_width + ag1_botao_tamanho_cromossomo_x)
 						&& (Game.MY > ag1_botao_tamanho_cromossomo_y
-								&& Game.MY < this.ag1_botao_tamanho_cromossomo_height + ag1_botao_tamanho_cromossomo_y)) {
+								&& Game.MY < this.ag1_botao_tamanho_cromossomo_height
+										+ ag1_botao_tamanho_cromossomo_y)) {
 					System.out.println("Botao tamanho do cromossomo");
-					ag1_selecionado=2;
-					
+					ag1_selecionado = 2;
+
 				}
 				// Botao limite_geracao
 				else if ((Game.MX > ag1_botao_limite_geracao_x
@@ -352,8 +366,8 @@ public class UI {
 						&& (Game.MY > ag1_botao_limite_geracao_y
 								&& Game.MY < this.ag1_botao_limite_geracao_height + ag1_botao_limite_geracao_y)) {
 					System.out.println("Botao limite de geracao");
-					ag1_selecionado=3;
-					
+					ag1_selecionado = 3;
+
 				}
 				// Botao taxa_mutacao
 				else if ((Game.MX > ag1_botao_taxa_mutacao_x
@@ -361,26 +375,40 @@ public class UI {
 						&& (Game.MY > ag1_botao_taxa_mutacao_y
 								&& Game.MY < this.ag1_botao_taxa_mutacao_height + ag1_botao_taxa_mutacao_y)) {
 					System.out.println("Botao taxa de mutacao");
-					ag1_selecionado=4;
-					
+					ag1_selecionado = 4;
+
 				}
 				// Botao gerar
-				else if ((Game.MX > ag1_botao_gerar_x
-						&& Game.MX < this.ag1_botao_gerar_width + ag1_botao_gerar_x)
-						&& (Game.MY > ag1_botao_gerar_y
-								&& Game.MY < this.ag1_botao_gerar_height + ag1_botao_gerar_y)) {
+				else if ((Game.MX > ag1_botao_gerar_x && Game.MX < this.ag1_botao_gerar_width + ag1_botao_gerar_x)
+						&& (Game.MY > ag1_botao_gerar_y && Game.MY < this.ag1_botao_gerar_height + ag1_botao_gerar_y)) {
 					System.out.println("Botao gerar");
-					ag1_selecionado=0;
-					
+					ag1_selecionado = 0;
+					int populacao=Integer.parseInt(this.ag1_string_populacao_valor_str);
+					int tamanho_cromossomo=Integer.parseInt(this.ag1_string_tamanho_cromossomo_valor_str);
+					int limitegeracao=Integer.parseInt(this.ag1_string_limite_geracao_valor_str);
+					double taxamutacao=Double.parseDouble(this.ag1_string_taxa_mutacao_valor_str);
+					AlgGen ag = new AlgGen();
+					ag.callAG(populacao, tamanho_cromossomo, limitegeracao, taxamutacao);
+					Save_Game.save(ag.Geracoes);
+					if (ag.solucao_encontrada) {
+					ag1_fb_str = "Pronto, com solução!";
+					permissao_comecar=true;
+					}else {
+						ag1_fb_str = "Pronto, sem solução!";
+						permissao_comecar=false;
+					}
+
 				}
 				// Botao comecar
-				else if ((Game.MX > ag1_botao_comecar_x
-						&& Game.MX < this.ag1_botao_comecar_width + ag1_botao_comecar_x)
+				else if ((Game.MX > ag1_botao_comecar_x && Game.MX < this.ag1_botao_comecar_width + ag1_botao_comecar_x)
 						&& (Game.MY > ag1_botao_comecar_y
 								&& Game.MY < this.ag1_botao_comecar_height + ag1_botao_comecar_y)) {
+					if (permissao_comecar) {
+					permissao_comecar=false;
 					System.out.println("Botao comecar");
-					ag1_selecionado=0;
-					
+					ag1_selecionado = 0;
+					}
+
 				}
 			}
 		}
@@ -407,7 +435,7 @@ public class UI {
 				e.printStackTrace();
 			}
 		}
-		
+
 		g.setColor(Color.black);
 		g.setFont(font2);
 		// painel1
@@ -416,16 +444,16 @@ public class UI {
 //		g.setColor(Color.BLUE);
 //		g.fillRect(ag1_painel2_x, ag1_painel2_y, ag1_painel2_width, ag1_painel2_height);
 		// texto feedback
-		
+
 		g.setColor(Color.RED);
-			
+
 		g.drawString(ag1_fb_str, ag1_fb_x, ag1_fb_y);
-		
+
 		// botao populacao
 		g.setColor(Color.white);
 		g.fillRect(ag1_botao_populacao_x, ag1_botao_populacao_y, ag1_botao_populacao_width, ag1_botao_populacao_height);
 		g.setColor(Color.BLUE);
-		if (this.ag1_selecionado==1) {
+		if (this.ag1_selecionado == 1) {
 			g.setColor(Color.RED);
 		}
 		g.drawRect(ag1_botao_populacao_x, ag1_botao_populacao_y, ag1_botao_populacao_width, ag1_botao_populacao_height);
@@ -438,7 +466,7 @@ public class UI {
 		g.fillRect(ag1_botao_tamanho_cromossomo_x, ag1_botao_tamanho_cromossomo_y, ag1_botao_tamanho_cromossomo_width,
 				ag1_botao_tamanho_cromossomo_height);
 		g.setColor(Color.BLUE);
-		if (this.ag1_selecionado==2) {
+		if (this.ag1_selecionado == 2) {
 			g.setColor(Color.RED);
 		}
 		g.drawRect(ag1_botao_tamanho_cromossomo_x, ag1_botao_tamanho_cromossomo_y, ag1_botao_tamanho_cromossomo_width,
@@ -456,7 +484,7 @@ public class UI {
 		g.fillRect(ag1_botao_limite_geracao_x, ag1_botao_limite_geracao_y, ag1_botao_limite_geracao_width,
 				ag1_botao_limite_geracao_height);
 		g.setColor(Color.BLUE);
-		if (this.ag1_selecionado==3) {
+		if (this.ag1_selecionado == 3) {
 			g.setColor(Color.RED);
 		}
 		g.drawRect(ag1_botao_limite_geracao_x, ag1_botao_limite_geracao_y, ag1_botao_limite_geracao_width,
@@ -472,7 +500,7 @@ public class UI {
 		g.fillRect(ag1_botao_taxa_mutacao_x, ag1_botao_taxa_mutacao_y, ag1_botao_taxa_mutacao_width,
 				ag1_botao_taxa_mutacao_height);
 		g.setColor(Color.BLUE);
-		if (this.ag1_selecionado==4) {
+		if (this.ag1_selecionado == 4) {
 			g.setColor(Color.RED);
 		}
 		g.drawRect(ag1_botao_taxa_mutacao_x, ag1_botao_taxa_mutacao_y, ag1_botao_taxa_mutacao_width,
@@ -494,11 +522,12 @@ public class UI {
 		g.setColor(Color.white);
 		g.drawString(ag1_string_voltar_str, ag1_string_voltar_x, ag1_string_voltar_y);
 		// botao comecar
+		if(permissao_comecar) {
 		g.setColor(Color.BLUE);
 		g.fillRect(ag1_botao_comecar_x, ag1_botao_comecar_y, ag1_botao_comecar_width, ag1_botao_comecar_height);
 		g.setColor(Color.white);
 		g.drawString(ag1_string_comecar_str, ag1_string_comecar_x, ag1_string_comecar_y);
-
+		}
 	}
 
 	private void astar(Graphics g) {
