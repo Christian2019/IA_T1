@@ -133,8 +133,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
-
-		// SCALE = 5;
+	//	 SCALE = 5;
 		game = new Game();
 		game.start();
 	}
@@ -185,18 +184,15 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).render(g2);
 		}
-		if (ui.state.equals("astar")) {
-	//		g.drawImage(World.mapa, ((WIDTH * SCALE) - (HEIGHT * SCALE) - ui.astar_painel_width) / 2, 0, HEIGHT * SCALE,
-		//			HEIGHT * SCALE, null);
-					g.drawImage(World.mapa, Proporcoes.porcentagem(Proporcoes.X_Total, 25), 0, HEIGHT * SCALE,
-						HEIGHT * SCALE, null);
-
-		}
 		ui.render(g);
-
+		if (ui.state.equals("astar")) {
+			g.drawImage(World.mapa, Proporcoes.porcentagem(Proporcoes.X_Total, 25),
+					0, HEIGHT * SCALE, HEIGHT * SCALE,null);
+		}else if (ui.state.equals("ag2")) {
+			g.drawImage(World.mapa, Proporcoes.porcentagem(Proporcoes.X_Total, 0),
+					0, HEIGHT * SCALE, HEIGHT * SCALE,null);
+		}
 		bs.show();
-	
-
 	}
 
 	@Override
@@ -228,28 +224,28 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (ui.state.equals("ag1")&&!(ui.ag1_selecionado==0)) {
+		if (ui.state.equals("ag1") && !(ui.ag1_selecionado == 0)) {
 			if (e.getKeyCode() == KeyEvent.VK_0) {
 				Alphabet.vk_0 = true;
 			} else if (e.getKeyCode() == KeyEvent.VK_1) {
 				Alphabet.vk_1 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_2) {
+			} else if (e.getKeyCode() == KeyEvent.VK_2) {
 				Alphabet.vk_2 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_3) {
+			} else if (e.getKeyCode() == KeyEvent.VK_3) {
 				Alphabet.vk_3 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_4) {
+			} else if (e.getKeyCode() == KeyEvent.VK_4) {
 				Alphabet.vk_4 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_5) {
+			} else if (e.getKeyCode() == KeyEvent.VK_5) {
 				Alphabet.vk_5 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_6) {
+			} else if (e.getKeyCode() == KeyEvent.VK_6) {
 				Alphabet.vk_6 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_7) {
+			} else if (e.getKeyCode() == KeyEvent.VK_7) {
 				Alphabet.vk_7 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_8) {
+			} else if (e.getKeyCode() == KeyEvent.VK_8) {
 				Alphabet.vk_8 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_9) {
+			} else if (e.getKeyCode() == KeyEvent.VK_9) {
 				Alphabet.vk_9 = true;
-			}else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			} else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 				Alphabet.vk_backspace = true;
 			}
 		}
