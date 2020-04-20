@@ -178,21 +178,117 @@ public class UI {
 	// mutacao
 	public int ag1_selecionado = 0;
 	// ag2
-
+	// painel
+	int ag2_painel_x = Proporcoes.porcentagem(Proporcoes.Y_Total, 100);
+	int ag2_painel_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 0);
+	int ag2_painel_width = Proporcoes.porcentagem(Proporcoes.X_Total, 45);
+	int ag2_painel_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 100);
+	// texto feedback
+	String ag2_fb_str = "Esperando comando";
+	int ag2_fb_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_fb_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 25);
+	// texto total geracoes
+	String ag2_total_geracoes_str = "Total de gerações: ";
+	int ag2_total_geracoes_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_total_geracoes_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 5);
+	// texto geracao atual
+	String ag2_geracao_atual_str = "Geração atual: ";
+	int ag2_geracao_atual_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_geracao_atual_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	// botao geracao atual
+	int ag2_botao_geracao_atual_x = Proporcoes.porcentagem(Proporcoes.X_Total, 72);
+	int ag2_botao_geracao_atual_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 6.5);
+	int ag2_botao_geracao_atual_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
+	int ag2_botao_geracao_atual_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 5);
+	// texto geracao atual valor
+	String ag2_geracao_atual_valor_str = "0";
+	int ag2_geracao_atual_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 72.5);
+	int ag2_geracao_atual_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 10.5);
+	// texto velocidade
+	String ag2_velocidade_str = "Velocidade:";
+	int ag2_velocidade_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_velocidade_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 17);
+	// image menos velocidade
+	int ag2_velocidade_arrow_left_x = Proporcoes.porcentagem(Proporcoes.X_Total, 72);
+	int ag2_velocidade_arrow_left_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 14);
+	int ag2_velocidade_arrow_left_size = Proporcoes.porcentagem(Proporcoes.X_Total, 2);
+	// image mais velocidade
+	int ag2_velocidade_arrow_right_x = Proporcoes.porcentagem(Proporcoes.X_Total, 79);
+	int ag2_velocidade_arrow_right_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 14);
+	int ag2_velocidade_arrow_right_size = Proporcoes.porcentagem(Proporcoes.X_Total, 2);
+	// texto velocidade valor
+	String ag2_velocidade_valor_str = "0.25";
+	int ag2_velocidade_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 74.5);
+	int ag2_velocidade_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 17);
+	// texto movimentos
+	String ag2_movimentos_str = "Movimentos:";
+	int ag2_movimentos_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_movimentos_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 32);
+	// texto movimentos2
+	String ag2_movimentos2_str = "0=NW 1=N 2=NE 3=E 4=SE 5=S 6=SW 7=W";
+	int ag2_movimentos2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_movimentos2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 39);
+	// texto cromossomo elite
+	String ag2_cromossomo_elite_str = "Cromossomo elite:";
+	int ag2_cromossomo_elite_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_cromossomo_elite_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 45);
+	// texto cromossomo elite valor
+	String ag2_cromossomo_elite_valor_str = "16720631672024013176110064145171042744467655511571";
+	int ag2_cromossomo_elite_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_cromossomo_elite_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
+	// texto aptidao elite
+	String ag2_aptidao_elite_str = "Aptidao elite: " + "[v1=3, v2=2]";
+	int ag2_aptidao_elite_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_aptidao_elite_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
+	// botao comecar de
+	int ag2_botao_comecar_de_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
+	int ag2_botao_comecar_de_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 18);
+	int ag2_botao_comecar_de_width = Proporcoes.porcentagem(Proporcoes.X_Total, 15);
+	int ag2_botao_comecar_de_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
+	// string comecar de
+	String ag2_comecar_de_str = "Comecar de GA";
+	int ag2_comecar_de_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
+	int ag2_comecar_de_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 22.5);
+	// botao apenas
+	int ag2_botao_apenas_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
+	int ag2_botao_apenas_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
+	int ag2_botao_apenas_width = Proporcoes.porcentagem(Proporcoes.X_Total, 15);
+	int ag2_botao_apenas_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
+	// string apenas
+	String ag2_apenas_str = "Apenas GA ";
+	int ag2_apenas_x = Proporcoes.porcentagem(Proporcoes.X_Total, 86);
+	int ag2_apenas_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 14);
+	// botao parar/continuar
+	int ag2_botao_pa_co_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
+	int ag2_botao_pa_co_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 26);
+	int ag2_botao_pa_co_width = Proporcoes.porcentagem(Proporcoes.X_Total, 15);
+	int ag2_botao_pa_co_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
+	// string parar/continuar
+	String ag2_pa_co_str = "Pausar";
+	int ag2_pa_co_x = Proporcoes.porcentagem(Proporcoes.X_Total, 86.5);
+	int ag2_pa_co_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 30);
+	// botao voltar
+	int ag2_botao_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
+	int ag2_botao_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 2);
+	int ag2_botao_voltar_width = Proporcoes.porcentagem(Proporcoes.X_Total, 15);
+	int ag2_botao_voltar_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
+	// string voltar
+	String ag2_voltar_str = "Voltar";
+	int ag2_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 88);
+	int ag2_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
 	// parametro selecionado
-	// 0=nenhum 1=populacao 2=tamanho do cromossomo 3=limite de geracao 4=taxa de
-	// mutacao
+	// 0=nenhum 1=geracao 
 	public int ag2_selecionado = 0;
-	
+
 	public String state = "Menu principal";
 	boolean background = false;
 	public boolean astar_ligado = false;
 	boolean permissao_comecar = false;
 	AlgGen ag;
-	public  BufferedImage ARROW_RIGHT =Game.spritesheet.getSprite
-			(0 * Game.TILE_SIZE, 7 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
-	public static BufferedImage ARROW_LEFT =Game.spritesheet.getSprite
-			(1 * Game.TILE_SIZE, 7 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
+	public BufferedImage ARROW_RIGHT = Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 7 * Game.TILE_SIZE,
+			Game.TILE_SIZE, Game.TILE_SIZE);
+	public static BufferedImage ARROW_LEFT = Game.spritesheet.getSprite(1 * Game.TILE_SIZE, 7 * Game.TILE_SIZE,
+			Game.TILE_SIZE, Game.TILE_SIZE);
 
 	public void tick() {
 		if (state.equals("Menu principal")) {
@@ -414,6 +510,48 @@ public class UI {
 					}
 				}
 			}
+		}else if (state.equals("ag2")) {
+			if (ag2_selecionado == 1) {
+				String type = Alphabet.type();
+				
+				 if (this.ag2_geracao_atual_valor_str.length() < 8) {
+					 
+					if (!type.equals("backspace") && !type.equals("")) {
+						ag2_geracao_atual_valor_str = ag2_geracao_atual_valor_str + type;
+						System.out.println("bolla");
+					}
+				}
+				if (this.ag2_geracao_atual_valor_str.length() > 0) {
+					if (type.equals("backspace")) {
+						ag2_geracao_atual_valor_str = ag2_geracao_atual_valor_str.substring(0,
+								ag2_geracao_atual_valor_str.length() - 1);
+					}
+				}
+			}
+			if (Game.mouseClicked) {
+				Game.mouseClicked = false;
+				// Botao voltar
+				if ((Game.MX > ag2_botao_voltar_x && Game.MX < this.ag2_botao_voltar_width + ag2_botao_voltar_x)
+						&& (Game.MY > ag2_botao_voltar_y
+								&& Game.MY < this.ag2_botao_voltar_height + ag2_botao_voltar_y)) {
+					System.out.println("Botao voltar");
+					ag2_selecionado = 0;
+					ag2_fb_str = "Esperando comando";
+					ag1_fb_str = "Digite os parâmetros";
+					state = "ag1";
+					permissao_comecar = false;
+					background = false;
+				}
+				//Botao geracao atual
+				else if ((Game.MX > ag2_botao_geracao_atual_x && Game.MX < this.ag2_botao_geracao_atual_width + ag2_botao_geracao_atual_x)
+						&& (Game.MY > ag2_botao_geracao_atual_y
+								&& Game.MY < this.ag2_botao_geracao_atual_height + ag2_botao_geracao_atual_y)) {
+					System.out.println("Botao geracao atual");
+					ag2_selecionado = 1;
+					
+				}
+				
+				}
 		}
 	}
 
@@ -433,6 +571,7 @@ public class UI {
 
 		if (!background) {
 			background = true;
+			ag2_total_geracoes_str = "Total de gerações: " + this.ag.Geracoes.size();
 			try {
 				Game.background = ImageIO.read(getClass().getResource("/background6.jpeg"));
 			} catch (IOException e) {
@@ -440,151 +579,64 @@ public class UI {
 				e.printStackTrace();
 			}
 		}
-		// painel
-		int ag2_painel_x = Proporcoes.porcentagem(Proporcoes.Y_Total, 100);
-		int ag2_painel_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 0);
-		int ag2_painel_width = Proporcoes.porcentagem(Proporcoes.X_Total, 45);
-		int ag2_painel_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 100);
-		// texto feedback
-		String ag2_fb_str = "Esperando comando";
-		int ag2_fb_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_fb_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
-		// texto total geracoes
-		String ag2_total_geracoes_str = "Total de gerações: " + this.ag.Geracoes.size();
-		int ag2_total_geracoes_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_total_geracoes_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 5);
-		// texto geracao atual
-		String ag2_geracao_atual_str = "Geração atual: ";
-		int ag2_geracao_atual_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_geracao_atual_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 15);
-		// botao geracao atual
-		int ag2_botao_geracao_atual_x = Proporcoes.porcentagem(Proporcoes.X_Total, 75);
-		int ag2_botao_geracao_atual_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 11);
-		int ag2_botao_geracao_atual_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
-		int ag2_botao_geracao_atual_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 5);
-		// texto geracao atual valor
-		String ag2_geracao_atual_valor_str = "0";
-		int ag2_geracao_atual_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 76);
-		int ag2_geracao_atual_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 15);
-		// texto velocidade
-		String ag2_velocidade_str = "Velocidade:";
-		int ag2_velocidade_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_velocidade_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 25);
-		// image menos velocidade
-		int ag2_velocidade_arrow_left_x=Proporcoes.porcentagem(Proporcoes.X_Total, 75);
-		int ag2_velocidade_arrow_left_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 22.5);
-		int ag2_velocidade_arrow_left_size=Proporcoes.porcentagem(Proporcoes.X_Total, 2);
-		// image mais velocidade
-		int ag2_velocidade_arrow_right_x=Proporcoes.porcentagem(Proporcoes.X_Total, 81);
-		int ag2_velocidade_arrow_right_y=Proporcoes.porcentagem(Proporcoes.Y_Total, 22.5);
-		int ag2_velocidade_arrow_right_size=Proporcoes.porcentagem(Proporcoes.X_Total, 2);
-		// texto velocidade valor
-		String ag2_velocidade_valor_str = "0.25";
-		int ag2_velocidade_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 77);
-		int ag2_velocidade_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 25.5);
-		// texto movimentos
-		String ag2_movimentos_str = "Movimentos:";
-		int ag2_movimentos_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_movimentos_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 32);
-		// texto movimentos2
-		String ag2_movimentos2_str = "0=NW 1=N 2=NE 3=E 4=SE 5=S 6=SW 7=W";
-		int ag2_movimentos2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_movimentos2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 39);
-		// texto cromossomo elite
-		String ag2_cromossomo_elite_str = "Cromossomo elite:";
-		int ag2_cromossomo_elite_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_cromossomo_elite_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 45);
-		// texto cromossomo elite valor
-		String ag2_cromossomo_elite_valor_str = "16720631672024013176110064145171042744467655511571";
-		int ag2_cromossomo_elite_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_cromossomo_elite_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
-		// texto aptidao elite
-		String ag2_aptidao_elite_str = "Aptidao elite: " + "[v1=3, v2=2]";
-		int ag2_aptidao_elite_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_aptidao_elite_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
-		// botao comecar de
-		int ag2_botao_comecar_de_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
-		int ag2_botao_comecar_de_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 72.5);
-		int ag2_botao_comecar_de_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
-		int ag2_botao_comecar_de_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-		// string comecar de
-		String ag2_comecar_de_str = "Comecar de: " + ag2_geracao_atual_valor_str;
-		int ag2_comecar_de_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_comecar_de_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
-		// botao apenas
-		int ag2_botao_apenas_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
-		int ag2_botao_apenas_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 72.5);
-		int ag2_botao_apenas_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
-		int ag2_botao_apenas_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-		// string apenas
-		String ag2_apenas_str = "Apenas: " + ag2_geracao_atual_valor_str;
-		int ag2_apenas_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_apenas_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
-		// botao parar/continuar
-		int ag2_botao_pa_co_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
-		int ag2_botao_pa_co_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 72.5);
-		int ag2_botao_pa_co_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
-		int ag2_botao_pa_co_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-		// string parar/continuar
-		String ag2_pa_co_str = "Continuar";
-		int ag2_pa_co_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_pa_co_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
-		// botao voltar
-		int ag2_botao_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85);
-		int ag2_botao_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 72.5);
-		int ag2_botao_voltar_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
-		int ag2_botao_voltar_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 10);
-		// string voltar
-		String ag2_voltar_str = "Voltar";
-		int ag2_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-		int ag2_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
 
-		
 		g.setFont(font2);
 		// painel1
 		g.setColor(Color.black);
 		g.fillRect(ag2_painel_x, ag2_painel_y, ag2_painel_width, ag2_painel_height);
-		//string feedback
+		// string feedback
 		g.setColor(Color.RED);
 		g.drawString(ag2_fb_str, ag2_fb_x, ag2_fb_y);
 		// string total geracoes
 		g.setColor(Color.BLUE);
-		g.drawString(ag2_total_geracoes_str, ag2_total_geracoes_x,ag2_total_geracoes_y);
-		//geracao atual
+		g.drawString(ag2_total_geracoes_str, ag2_total_geracoes_x, ag2_total_geracoes_y);
+		// geracao atual
 		g.drawString(ag2_geracao_atual_str, ag2_geracao_atual_x, ag2_geracao_atual_y);
 		g.setColor(Color.WHITE);
-		g.fillRect(ag2_botao_geracao_atual_x, ag2_botao_geracao_atual_y, ag2_botao_geracao_atual_width, ag2_botao_geracao_atual_height);
+		g.fillRect(ag2_botao_geracao_atual_x, ag2_botao_geracao_atual_y, ag2_botao_geracao_atual_width,
+				ag2_botao_geracao_atual_height);
 		g.setColor(Color.BLUE);
-		g.drawRect(ag2_botao_geracao_atual_x, ag2_botao_geracao_atual_y, ag2_botao_geracao_atual_width, ag2_botao_geracao_atual_height);
+		if (ag2_selecionado==1) {
+			g.setColor(Color.RED);
+		}
+		g.drawRect(ag2_botao_geracao_atual_x, ag2_botao_geracao_atual_y, ag2_botao_geracao_atual_width,
+				ag2_botao_geracao_atual_height);
 		g.setColor(Color.RED);
 		g.drawString(ag2_geracao_atual_valor_str, ag2_geracao_atual_valor_x, ag2_geracao_atual_valor_y);
-		//velocidade
+		// velocidade
 		g.setColor(Color.BLUE);
 		g.drawString(ag2_velocidade_str, ag2_velocidade_x, ag2_velocidade_y);
-		g.drawImage(ARROW_LEFT, ag2_velocidade_arrow_left_x, ag2_velocidade_arrow_left_y,ag2_velocidade_arrow_left_size,ag2_velocidade_arrow_left_size, null);
+		g.drawImage(ARROW_LEFT, ag2_velocidade_arrow_left_x, ag2_velocidade_arrow_left_y,
+				ag2_velocidade_arrow_left_size, ag2_velocidade_arrow_left_size, null);
 		g.drawString(ag2_velocidade_valor_str, ag2_velocidade_valor_x, ag2_velocidade_valor_y);
-		g.drawImage(ARROW_RIGHT, ag2_velocidade_arrow_right_x, ag2_velocidade_arrow_right_y,ag2_velocidade_arrow_right_size,ag2_velocidade_arrow_right_size, null);
-		//Movimentos
+		g.drawImage(ARROW_RIGHT, ag2_velocidade_arrow_right_x, ag2_velocidade_arrow_right_y,
+				ag2_velocidade_arrow_right_size, ag2_velocidade_arrow_right_size, null);
+		// Movimentos
 		g.setColor(Color.BLUE);
 		g.drawString(ag2_movimentos_str, ag2_movimentos_x, ag2_movimentos_y);
 		g.drawString(ag2_movimentos2_str, ag2_movimentos2_x, ag2_movimentos2_y);
-		//Cromossomo elite
+		// Cromossomo elite
 		g.drawString(ag2_cromossomo_elite_str, ag2_cromossomo_elite_x, ag2_cromossomo_elite_y);
-		//Comecar de
+		g.setColor(Color.white);
+		g.drawString("012345678901234567890123456789", ag2_cromossomo_elite_x,
+				ag2_cromossomo_elite_y + Proporcoes.porcentagem(Proporcoes.Y_Total, 10));
+		// Comecar de
 		g.setColor(Color.BLUE);
-		g.fillRect(ag2_botao_comecar_de_x, ag2_botao_comecar_de_y, ag2_botao_comecar_de_width, ag2_botao_comecar_de_height);
+		g.fillRect(ag2_botao_comecar_de_x, ag2_botao_comecar_de_y, ag2_botao_comecar_de_width,
+				ag2_botao_comecar_de_height);
+		g.setColor(Color.WHITE);
 		g.drawString(ag2_comecar_de_str, ag2_comecar_de_x, ag2_comecar_de_y);
-		//Apenas
+		// Apenas
 		g.setColor(Color.BLUE);
 		g.fillRect(ag2_botao_apenas_x, ag2_botao_apenas_y, ag2_botao_apenas_width, ag2_botao_apenas_height);
 		g.setColor(Color.WHITE);
 		g.drawString(ag2_apenas_str, ag2_apenas_x, ag2_apenas_y);
-		//Parar/Continuar
+		// Parar/Continuar
 		g.setColor(Color.BLUE);
 		g.fillRect(ag2_botao_pa_co_x, ag2_botao_pa_co_y, ag2_botao_pa_co_width, ag2_botao_pa_co_height);
 		g.setColor(Color.WHITE);
 		g.drawString(ag2_pa_co_str, ag2_pa_co_x, ag2_pa_co_y);
-		//Voltar
+		// Voltar
 		g.setColor(Color.BLUE);
 		g.fillRect(ag2_botao_voltar_x, ag2_botao_voltar_y, ag2_botao_voltar_width, ag2_botao_voltar_height);
 		g.setColor(Color.WHITE);

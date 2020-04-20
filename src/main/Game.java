@@ -224,7 +224,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if (ui.state.equals("ag1") && !(ui.ag1_selecionado == 0)) {
+		if (ui.state.equals("ag1") && !(ui.ag1_selecionado == 0)||ui.state.equals("ag2") && !(ui.ag2_selecionado == 0)) {
 			if (e.getKeyCode() == KeyEvent.VK_0) {
 				Alphabet.vk_0 = true;
 			} else if (e.getKeyCode() == KeyEvent.VK_1) {
