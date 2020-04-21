@@ -92,10 +92,18 @@ public class AlgGen {
 			aptidoes.add(matriz_Atual_Aptidoes.get(i));
 		}
 		String elite_str = "";
+		Aptidao aptidao_elite=null;
+		if (!this.solucao_encontrada) {
 		for (int i = 0; i < this.tamanho_cromossomo; i++) {
 			elite_str = elite_str + elite[i];
 		}
-		Aptidao aptidao_elite = this.matriz_Atual_Aptidoes.get(x_elite);
+		aptidao_elite = this.matriz_Atual_Aptidoes.get(x_elite);
+		}else {
+			for (int i = 0; i < this.tamanho_cromossomo; i++) {
+				elite_str = elite_str +matrizA[this.solucao_x][i];
+			}
+			aptidao_elite = this.matriz_Atual_Aptidoes.get(this.solucao_x);
+		}
 		Geracao geracao = new Geracao(array_populacao, aptidoes, elite_str, aptidao_elite);
 		this.Geracoes.add(geracao);				
 		// Solucao encontrada para de rodar

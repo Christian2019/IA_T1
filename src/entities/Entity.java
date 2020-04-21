@@ -14,7 +14,7 @@ public class Entity {
 			(0 * Game.TILE_SIZE, 5 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
 	public static BufferedImage SAIDA =Game.spritesheet.getSprite
 			(0 * Game.TILE_SIZE, 6 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE);
-	public static BufferedImage PLAYER[] = {Game.spritesheet.getSprite
+	public static BufferedImage ELITE[] = {Game.spritesheet.getSprite
 			(0 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
 			Game.spritesheet.getSprite
 			(1 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
@@ -22,6 +22,24 @@ public class Entity {
 			(2 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
 			Game.spritesheet.getSprite
 			(3 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE)
+			};
+	public static BufferedImage PLAYER[] = {Game.spritesheet.getSprite
+			(4 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(5 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(6 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(7 * Game.TILE_SIZE, 0 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE)
+			};
+	public static BufferedImage GHOST[] = {Game.spritesheet.getSprite
+			(0 * Game.TILE_SIZE, 4 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(1 * Game.TILE_SIZE, 4 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(2 * Game.TILE_SIZE, 4 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE),
+			Game.spritesheet.getSprite
+			(3 * Game.TILE_SIZE, 4 * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE)
 			};
 	
 	public boolean left,right,up,down;

@@ -12,12 +12,14 @@ import javax.imageio.ImageIO;
 import entities.Entity;
 import entities.Entrada;
 import entities.Player;
+import entities.Spawnner_Player;
 import main.AlgGen;
 import main.Alphabet;
 import main.Game;
 import main.Geracao;
 import main.Proporcoes;
 import main.Save_Game;
+import som.Sound;
 import world.Camera;
 import world.World;
 
@@ -201,7 +203,7 @@ public class UI {
 	int ag2_botao_geracao_atual_width = Proporcoes.porcentagem(Proporcoes.X_Total, 10);
 	int ag2_botao_geracao_atual_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 5);
 	// texto geracao atual valor
-	String ag2_geracao_atual_valor_str = "0";
+	public String ag2_geracao_atual_valor_str = "0";
 	int ag2_geracao_atual_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 72.5);
 	int ag2_geracao_atual_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 10.5);
 	// texto velocidade
@@ -217,7 +219,7 @@ public class UI {
 	int ag2_velocidade_arrow_right_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 14);
 	int ag2_velocidade_arrow_right_size = Proporcoes.porcentagem(Proporcoes.X_Total, 2);
 	// texto velocidade valor
-	String ag2_velocidade_valor_str = "0.25";
+	String ag2_velocidade_valor_str = "1";
 	int ag2_velocidade_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 74.5);
 	int ag2_velocidade_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 17);
 	// texto movimentos
@@ -285,12 +287,19 @@ public class UI {
 	public boolean astar_ligado = false;
 	boolean permissao_comecar = false;
 	AlgGen ag;
+	
+	public boolean elite_morto=false;
+	public boolean ag2_comecarde=false;
+	
 	public BufferedImage ARROW_RIGHT = Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 7 * Game.TILE_SIZE,
 			Game.TILE_SIZE, Game.TILE_SIZE);
 	public static BufferedImage ARROW_LEFT = Game.spritesheet.getSprite(1 * Game.TILE_SIZE, 7 * Game.TILE_SIZE,
 			Game.TILE_SIZE, Game.TILE_SIZE);
 
 	public void tick() {
+		if (ag2_comecarde) {
+			comecarDe();
+		}
 		if (state.equals("Menu principal")) {
 			if (Game.mouseClicked) {
 				Game.mouseClicked = false;
@@ -317,6 +326,7 @@ public class UI {
 						&& (Game.MY > menuprincipal_botao_astar_y
 								&& Game.MY < this.menuprincipal_botao_astar_height + menuprincipal_botao_astar_y)) {
 					System.out.println("A*");
+					Spawnner_Player.limparPlayer();
 					state = "astar";
 					background = false;
 				}
@@ -336,7 +346,7 @@ public class UI {
 						for (int i = 0; i < Game.entities.size(); i++) {
 							if (Game.entities.get(i) instanceof Entrada) {
 								Player player = new Player(Game.entities.get(i).x, Game.entities.get(i).y,
-										Game.TILE_SIZE, Game.TILE_SIZE, Entity.PLAYER[0], 1, 1);
+										Game.TILE_SIZE, Game.TILE_SIZE, Entity.PLAYER[0], 1, 1,null,false);
 								Game.entities.add(player);
 								break;
 							}
@@ -357,6 +367,7 @@ public class UI {
 				}
 			}
 		} else if (state.equals("ag1")) {
+			Spawnner_Player.limparPlayer();
 			if (ag1_selecionado == 1) {
 				String type = Alphabet.type();
 				if (this.ag1_string_populacao_valor_str.length() == 0) {
@@ -540,6 +551,7 @@ public class UI {
 					ag1_fb_str = "Digite os parâmetros";
 					state = "ag1";
 					permissao_comecar = false;
+					ag2_comecarde=false;
 					background = false;
 				}
 				//Botao geracao atual
@@ -550,11 +562,58 @@ public class UI {
 					ag2_selecionado = 1;
 					
 				}
+				//Botao Apenas GA
+				else if ((Game.MX > ag2_botao_apenas_x && Game.MX < this.ag2_botao_apenas_width + ag2_botao_apenas_x)
+						&& (Game.MY > ag2_botao_apenas_y
+								&& Game.MY < this.ag2_botao_apenas_height + ag2_botao_apenas_y)) {
+					System.out.println("Botao Apenas GA");
+					ag2_comecarde=false;
+					Spawnner_Player.limparPlayer();
+					int ga=Integer.parseInt(ag2_geracao_atual_valor_str);
+					double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
+					if (ga<this.ag.Geracoes.size()) {
+						this.ag2_fb_str="Processando";
+						Spawnner_Player.populaGeracao(ag,ga,speed);	
+					}else {
+						this.ag2_fb_str="Número inválido";
+					}
+					
+					
+					
+				}//Botao Comecar de
+				
+				else if ((Game.MX > ag2_botao_comecar_de_x && Game.MX < this.ag2_botao_comecar_de_width + ag2_botao_comecar_de_x)
+						&& (Game.MY > ag2_botao_comecar_de_y
+								&& Game.MY < this.ag2_botao_comecar_de_height + ag2_botao_comecar_de_y)) {
+					System.out.println("Botao Comecar de");
+					this.ag2_comecarde=true;
+					elite_morto=true;
+					
+					
+				}
 				
 				}
 		}
 	}
-
+public void comecarDe() {
+	if (elite_morto==true) {
+	
+		elite_morto=false;
+	Spawnner_Player.limparPlayer();
+	int ga=Integer.parseInt(ag2_geracao_atual_valor_str);
+	if (ga==this.ag.Geracoes.size()-1) {
+		Sound.fundo2.stop();
+		Sound.fundo.play();
+	}
+	double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
+	if (ga<this.ag.Geracoes.size()) {
+		this.ag2_fb_str="Processando";
+		Spawnner_Player.populaGeracao(ag,ga,speed);	
+	}else {
+		this.ag2_fb_str="Número inválido";
+	}
+	}
+}
 	public void render(Graphics g) {
 		if (state.equals("Menu principal")) {
 			menu_principal(g);

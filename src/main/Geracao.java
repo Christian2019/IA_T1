@@ -3,10 +3,10 @@ package main;
 import java.util.ArrayList;
 
 public class Geracao {
-ArrayList<String> populacao;
-ArrayList<Aptidao> aptidoes;
-String elite;
-Aptidao aptidao_elite;
+public ArrayList<String> populacao;
+public ArrayList<Aptidao> aptidoes;
+public String elite;
+public Aptidao aptidao_elite;
 
 public Geracao(ArrayList<String> populacao, ArrayList<Aptidao> aptidoes, String elite, Aptidao aptidao_elite) {
 	this.populacao = populacao;
