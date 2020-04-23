@@ -124,7 +124,7 @@ public class UI {
 	int ag1_string_populacao_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_populacao_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 9.75);
 	// string populacao_valor
-	String ag1_string_populacao_valor_str = "11";
+	String ag1_string_populacao_valor_str = "999";
 	int ag1_string_populacao_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_populacao_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 9.75);
 	// string tamanho_cromossomo1
@@ -148,7 +148,7 @@ public class UI {
 	int ag1_string_limite_geracao2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_limite_geracao2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 40.25);
 	// string limite_geracao_valor
-	String ag1_string_limite_geracao_valor_str = "1000";
+	String ag1_string_limite_geracao_valor_str = "999";
 	int ag1_string_limite_geracao_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_limite_geracao_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 37.25);
 	// string taxa_mutacao
@@ -235,13 +235,15 @@ public class UI {
 	int ag2_cromossomo_elite_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
 	int ag2_cromossomo_elite_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 45);
 	// texto cromossomo elite valor
-	String ag2_cromossomo_elite_valor_str = "16720631672024013176110064145171042744467655511571";
-	int ag2_cromossomo_elite_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-	int ag2_cromossomo_elite_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
+	public String ag2_cromossomo_elite_valor_str = " ";
 	// texto aptidao elite
-	String ag2_aptidao_elite_str = "Aptidao elite: " + "[v1=3, v2=2]";
+	String ag2_aptidao_elite_str = "Elite: ";
 	int ag2_aptidao_elite_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
-	int ag2_aptidao_elite_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
+	int ag2_aptidao_elite_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 55);
+	// texto aptidao elite valor
+	public String ag2_aptidao_elite_valor_str = "";
+	int ag2_aptidao_elite_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+	int ag2_aptidao_elite_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 95);
 	// botao comecar de
 	int ag2_botao_comecar_de_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
 	int ag2_botao_comecar_de_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 18);
@@ -260,15 +262,15 @@ public class UI {
 	String ag2_apenas_str = "Apenas GA ";
 	int ag2_apenas_x = Proporcoes.porcentagem(Proporcoes.X_Total, 86);
 	int ag2_apenas_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 14);
-	// botao parar/continuar
-	int ag2_botao_pa_co_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
-	int ag2_botao_pa_co_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 26);
-	int ag2_botao_pa_co_width = Proporcoes.porcentagem(Proporcoes.X_Total, 15);
-	int ag2_botao_pa_co_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
-	// string parar/continuar
-	String ag2_pa_co_str = "Pausar";
-	int ag2_pa_co_x = Proporcoes.porcentagem(Proporcoes.X_Total, 86.5);
-	int ag2_pa_co_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 30);
+	// botao parar
+	int ag2_botao_parar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
+	int ag2_botao_parar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 26);
+	int ag2_botao_parar_width = Proporcoes.porcentagem(Proporcoes.X_Total, 15);
+	int ag2_botao_parar_height = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
+	// string parar
+	String ag2_parar_str = "Parar";
+	int ag2_parar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 86.5);
+	int ag2_parar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 30);
 	// botao voltar
 	int ag2_botao_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 84);
 	int ag2_botao_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 2);
@@ -279,7 +281,7 @@ public class UI {
 	int ag2_voltar_x = Proporcoes.porcentagem(Proporcoes.X_Total, 88);
 	int ag2_voltar_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 6);
 	// parametro selecionado
-	// 0=nenhum 1=geracao 
+	// 0=nenhum 1=geracao
 	public int ag2_selecionado = 0;
 
 	public String state = "Menu principal";
@@ -287,16 +289,30 @@ public class UI {
 	public boolean astar_ligado = false;
 	boolean permissao_comecar = false;
 	AlgGen ag;
-	
-	public boolean elite_morto=false;
-	public boolean ag2_comecarde=false;
-	
+
+	public boolean elite_morto = false;
+	public boolean ag2_comecarde = false;
+	public boolean ag2_apenas = false;
+	public boolean ag2_apenas_fundo2 = true;
+
 	public BufferedImage ARROW_RIGHT = Game.spritesheet.getSprite(0 * Game.TILE_SIZE, 7 * Game.TILE_SIZE,
 			Game.TILE_SIZE, Game.TILE_SIZE);
 	public static BufferedImage ARROW_LEFT = Game.spritesheet.getSprite(1 * Game.TILE_SIZE, 7 * Game.TILE_SIZE,
 			Game.TILE_SIZE, Game.TILE_SIZE);
 
 	public void tick() {
+		if (ag2_apenas) {
+			if (ag2_apenas_fundo2) {
+				ag2_apenas_fundo2 = false;
+				int ga = Integer.parseInt(ag2_geracao_atual_valor_str);
+				if (ga == this.ag.Geracoes.size() - 1) {
+					Sound.fundo2.stop();
+					Sound.fundo.play();
+				}
+			}
+		} else {
+			ag2_apenas_fundo2 = true;
+		}
 		if (ag2_comecarde) {
 			comecarDe();
 		}
@@ -346,7 +362,7 @@ public class UI {
 						for (int i = 0; i < Game.entities.size(); i++) {
 							if (Game.entities.get(i) instanceof Entrada) {
 								Player player = new Player(Game.entities.get(i).x, Game.entities.get(i).y,
-										Game.TILE_SIZE, Game.TILE_SIZE, Entity.PLAYER[0], 1, 1,null,false);
+										Game.TILE_SIZE, Game.TILE_SIZE, Entity.ELITE[0], 1, 1, null, true);
 								Game.entities.add(player);
 								break;
 							}
@@ -374,7 +390,7 @@ public class UI {
 					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
 						ag1_string_populacao_valor_str = type;
 					}
-				} else if (this.ag1_string_populacao_valor_str.length() < 8) {
+				} else if (this.ag1_string_populacao_valor_str.length() < 3) {
 					if (!type.equals("backspace") && !type.equals("")) {
 						ag1_string_populacao_valor_str = ag1_string_populacao_valor_str + type;
 					}
@@ -391,7 +407,7 @@ public class UI {
 					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
 						ag1_string_tamanho_cromossomo_valor_str = type;
 					}
-				} else if (this.ag1_string_tamanho_cromossomo_valor_str.length() < 8) {
+				} else if (this.ag1_string_tamanho_cromossomo_valor_str.length() < 2) {
 					if (!type.equals("backspace") && !type.equals("")) {
 						ag1_string_tamanho_cromossomo_valor_str = ag1_string_tamanho_cromossomo_valor_str + type;
 					}
@@ -408,7 +424,7 @@ public class UI {
 					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
 						ag1_string_limite_geracao_valor_str = type;
 					}
-				} else if (this.ag1_string_limite_geracao_valor_str.length() < 8) {
+				} else if (this.ag1_string_limite_geracao_valor_str.length() < 3) {
 					if (!type.equals("backspace") && !type.equals("")) {
 						ag1_string_limite_geracao_valor_str = ag1_string_limite_geracao_valor_str + type;
 					}
@@ -521,12 +537,12 @@ public class UI {
 					}
 				}
 			}
-		}else if (state.equals("ag2")) {
+		} else if (state.equals("ag2")) {
 			if (ag2_selecionado == 1) {
 				String type = Alphabet.type();
-				
-				 if (this.ag2_geracao_atual_valor_str.length() < 8) {
-					 
+
+				if (this.ag2_geracao_atual_valor_str.length() < 8) {
+
 					if (!type.equals("backspace") && !type.equals("")) {
 						ag2_geracao_atual_valor_str = ag2_geracao_atual_valor_str + type;
 						System.out.println("bolla");
@@ -551,69 +567,138 @@ public class UI {
 					ag1_fb_str = "Digite os parâmetros";
 					state = "ag1";
 					permissao_comecar = false;
-					ag2_comecarde=false;
+					ag2_comecarde = false;
+					ag2_apenas = false;
 					background = false;
+					Sound.fundo.stop();
+					Sound.fundo2.loop();
 				}
-				//Botao geracao atual
-				else if ((Game.MX > ag2_botao_geracao_atual_x && Game.MX < this.ag2_botao_geracao_atual_width + ag2_botao_geracao_atual_x)
+				// Botao geracao atual
+				else if ((Game.MX > ag2_botao_geracao_atual_x
+						&& Game.MX < this.ag2_botao_geracao_atual_width + ag2_botao_geracao_atual_x)
 						&& (Game.MY > ag2_botao_geracao_atual_y
 								&& Game.MY < this.ag2_botao_geracao_atual_height + ag2_botao_geracao_atual_y)) {
 					System.out.println("Botao geracao atual");
-					ag2_selecionado = 1;
-					
+					if (!this.ag2_comecarde && !ag2_apenas) {
+						ag2_selecionado = 1;
+					}
+
 				}
-				//Botao Apenas GA
+				// Botao Apenas GA
 				else if ((Game.MX > ag2_botao_apenas_x && Game.MX < this.ag2_botao_apenas_width + ag2_botao_apenas_x)
 						&& (Game.MY > ag2_botao_apenas_y
 								&& Game.MY < this.ag2_botao_apenas_height + ag2_botao_apenas_y)) {
 					System.out.println("Botao Apenas GA");
-					ag2_comecarde=false;
+					ag2_selecionado = 0;
+					ag2_apenas = true;
+					ag2_comecarde = false;
 					Spawnner_Player.limparPlayer();
-					int ga=Integer.parseInt(ag2_geracao_atual_valor_str);
-					double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
-					if (ga<this.ag.Geracoes.size()) {
-						this.ag2_fb_str="Processando";
-						Spawnner_Player.populaGeracao(ag,ga,speed);	
-					}else {
-						this.ag2_fb_str="Número inválido";
+					if (ag2_geracao_atual_valor_str.length() == 0) {
+						this.ag2_fb_str = "Número inválido";
+					} else {
+						int ga = Integer.parseInt(ag2_geracao_atual_valor_str);
+						double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
+						if (ga < this.ag.Geracoes.size()) {
+							this.ag2_fb_str = "Processando";
+							Spawnner_Player.populaGeracao(ag, ga, speed);
+						} else {
+							this.ag2_fb_str = "Número inválido";
+						}
 					}
-					
-					
-					
-				}//Botao Comecar de
-				
-				else if ((Game.MX > ag2_botao_comecar_de_x && Game.MX < this.ag2_botao_comecar_de_width + ag2_botao_comecar_de_x)
+
+				} // Botao Comecar de
+
+				else if ((Game.MX > ag2_botao_comecar_de_x
+						&& Game.MX < this.ag2_botao_comecar_de_width + ag2_botao_comecar_de_x)
 						&& (Game.MY > ag2_botao_comecar_de_y
 								&& Game.MY < this.ag2_botao_comecar_de_height + ag2_botao_comecar_de_y)) {
 					System.out.println("Botao Comecar de");
-					this.ag2_comecarde=true;
-					elite_morto=true;
-					
-					
+					ag2_selecionado = 0;
+
+					elite_morto = true;
+					if (ag2_geracao_atual_valor_str.length() == 0) {
+						this.ag2_fb_str = "Número inválido";
+					} else {
+						int ga = Integer.parseInt(ag2_geracao_atual_valor_str);
+						if (ga < this.ag.Geracoes.size()) {
+							this.ag2_fb_str = "Processando";
+							this.ag2_comecarde = true;
+							ag2_apenas = false;
+						} else {
+							this.ag2_fb_str = "Número inválido";
+						}
+					}
+
 				}
-				
+				// Botao Parar
+
+				else if ((Game.MX > ag2_botao_parar_x && Game.MX < this.ag2_botao_parar_width + ag2_botao_parar_x)
+						&& (Game.MY > ag2_botao_parar_y && Game.MY < this.ag2_botao_parar_height + ag2_botao_parar_y)) {
+					System.out.println("Botao Parar");
+					ag2_selecionado = 0;
+					this.ag2_comecarde = false;
+					ag2_apenas = false;
+					this.ag2_fb_str = "Esperando comando";
+					Spawnner_Player.limparPlayer();
+
 				}
+				// Botao menos velocidade
+
+				else if ((Game.MX > ag2_velocidade_arrow_left_x
+						&& Game.MX < this.ag2_velocidade_arrow_left_size + ag2_velocidade_arrow_left_x)
+						&& (Game.MY > ag2_velocidade_arrow_left_y
+								&& Game.MY < this.ag2_velocidade_arrow_left_size + ag2_velocidade_arrow_left_y)) {
+					System.out.println("Botao Menos Velocidade");
+					ag2_selecionado = 0;
+					double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
+					if (speed >= 0.5) {
+						speed = speed / 2;
+
+					}
+					this.ag2_velocidade_valor_str = speed + "";
+
+				}
+				// Botao mais velocidade
+
+				else if ((Game.MX > ag2_velocidade_arrow_right_x
+						&& Game.MX < this.ag2_velocidade_arrow_right_size + ag2_velocidade_arrow_right_x)
+						&& (Game.MY > ag2_velocidade_arrow_right_y
+								&& Game.MY < this.ag2_velocidade_arrow_right_size + ag2_velocidade_arrow_right_y)) {
+					System.out.println("Botao Mais Velocidade");
+					ag2_selecionado = 0;
+					double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
+					if (speed <= 2) {
+						speed = speed * 2;
+
+					}
+					this.ag2_velocidade_valor_str = speed + "";
+
+				}
+
+			}
 		}
 	}
-public void comecarDe() {
-	if (elite_morto==true) {
-	
-		elite_morto=false;
-	Spawnner_Player.limparPlayer();
-	int ga=Integer.parseInt(ag2_geracao_atual_valor_str);
-	if (ga==this.ag.Geracoes.size()-1) {
-		Sound.fundo2.stop();
-		Sound.fundo.play();
+
+	public void comecarDe() {
+		if (elite_morto == true) {
+
+			elite_morto = false;
+			Spawnner_Player.limparPlayer();
+			int ga = Integer.parseInt(ag2_geracao_atual_valor_str);
+			if (ga == this.ag.Geracoes.size() - 1) {
+				Sound.fundo2.stop();
+				Sound.fundo.play();
+			}
+			double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
+			if (ga < this.ag.Geracoes.size()) {
+				this.ag2_fb_str = "Processando";
+				Spawnner_Player.populaGeracao(ag, ga, speed);
+			} else {
+				this.ag2_fb_str = "Número inválido";
+			}
+		}
 	}
-	double speed = Double.parseDouble(this.ag2_velocidade_valor_str);
-	if (ga<this.ag.Geracoes.size()) {
-		this.ag2_fb_str="Processando";
-		Spawnner_Player.populaGeracao(ag,ga,speed);	
-	}else {
-		this.ag2_fb_str="Número inválido";
-	}
-	}
-}
+
 	public void render(Graphics g) {
 		if (state.equals("Menu principal")) {
 			menu_principal(g);
@@ -655,7 +740,7 @@ public void comecarDe() {
 		g.fillRect(ag2_botao_geracao_atual_x, ag2_botao_geracao_atual_y, ag2_botao_geracao_atual_width,
 				ag2_botao_geracao_atual_height);
 		g.setColor(Color.BLUE);
-		if (ag2_selecionado==1) {
+		if (ag2_selecionado == 1) {
 			g.setColor(Color.RED);
 		}
 		g.drawRect(ag2_botao_geracao_atual_x, ag2_botao_geracao_atual_y, ag2_botao_geracao_atual_width,
@@ -676,9 +761,21 @@ public void comecarDe() {
 		g.drawString(ag2_movimentos2_str, ag2_movimentos2_x, ag2_movimentos2_y);
 		// Cromossomo elite
 		g.drawString(ag2_cromossomo_elite_str, ag2_cromossomo_elite_x, ag2_cromossomo_elite_y);
-		g.setColor(Color.white);
-		g.drawString("012345678901234567890123456789", ag2_cromossomo_elite_x,
-				ag2_cromossomo_elite_y + Proporcoes.porcentagem(Proporcoes.Y_Total, 10));
+		g.setColor(Color.RED);
+		g.drawString(this.ag2_cromossomo_elite_valor_str.substring(0, 1), ag2_cromossomo_elite_x,
+				ag2_cromossomo_elite_y + Proporcoes.porcentagem(Proporcoes.Y_Total, 5));
+		g.setColor(Color.BLUE);
+		g.drawString(this.ag2_cromossomo_elite_valor_str.substring(1, ag2_cromossomo_elite_valor_str.length()),
+				ag2_cromossomo_elite_x + Proporcoes.porcentagem(Proporcoes.X_Total, 1),
+				ag2_cromossomo_elite_y + Proporcoes.porcentagem(Proporcoes.Y_Total, 5));
+		// Aptidao Elite
+		g.setColor(Color.BLUE);
+		g.drawString(ag2_aptidao_elite_str, ag2_aptidao_elite_x, ag2_aptidao_elite_y);
+		// texto aptidao elite valor
+		ag2_aptidao_elite_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 58);
+		ag2_aptidao_elite_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 60);
+		g.setColor(Color.BLUE);
+		g.drawString(ag2_aptidao_elite_valor_str, ag2_aptidao_elite_valor_x, ag2_aptidao_elite_valor_y);
 		// Comecar de
 		g.setColor(Color.BLUE);
 		g.fillRect(ag2_botao_comecar_de_x, ag2_botao_comecar_de_y, ag2_botao_comecar_de_width,
@@ -692,9 +789,9 @@ public void comecarDe() {
 		g.drawString(ag2_apenas_str, ag2_apenas_x, ag2_apenas_y);
 		// Parar/Continuar
 		g.setColor(Color.BLUE);
-		g.fillRect(ag2_botao_pa_co_x, ag2_botao_pa_co_y, ag2_botao_pa_co_width, ag2_botao_pa_co_height);
+		g.fillRect(ag2_botao_parar_x, ag2_botao_parar_y, ag2_botao_parar_width, ag2_botao_parar_height);
 		g.setColor(Color.WHITE);
-		g.drawString(ag2_pa_co_str, ag2_pa_co_x, ag2_pa_co_y);
+		g.drawString(ag2_parar_str, ag2_parar_x, ag2_parar_y);
 		// Voltar
 		g.setColor(Color.BLUE);
 		g.fillRect(ag2_botao_voltar_x, ag2_botao_voltar_y, ag2_botao_voltar_width, ag2_botao_voltar_height);

@@ -29,6 +29,7 @@ public class Spawnner_Player {
 			if (ag.Geracoes.get(geracao_atual).populacao.get(i).equals(ag.Geracoes.get(geracao_atual).elite)) {
 				player = new Player(entrance_x, entrance_y, Game.TILE_SIZE, Game.TILE_SIZE, Entity.PLAYER[0], speed, 1,
 						ag.Geracoes.get(geracao_atual).populacao.get(i), true);
+				Game.ui.ag2_aptidao_elite_valor_str=ag.Geracoes.get(geracao_atual).aptidao_elite+"";
 			}
 			else {
 			player = new Player(entrance_x, entrance_y, Game.TILE_SIZE, Game.TILE_SIZE, Entity.PLAYER[0], speed, 2,
