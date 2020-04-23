@@ -15,7 +15,7 @@ public class Save_Game {
 	public static boolean saveExist = false;
 	public static boolean saveGame = false;
 
-	public static void save(ArrayList<Geracao> geracoes) {
+	public static void save_geracoes(ArrayList<Geracao> geracoes) {
 		BufferedWriter write = null;
 		try {
 			write = new BufferedWriter(new FileWriter("ag.txt"));
@@ -31,11 +31,68 @@ public class Save_Game {
 		}
 
 	}
+	public static void save_mapa() {
+		BufferedWriter write = null;
+		try {
+			write = new BufferedWriter(new FileWriter("save.txt"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		write = creat_String_Mapa(write);
+		try {
+			write.flush();
+			write.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+	}
+	private static BufferedWriter creat_String_Mapa(BufferedWriter write) {
+		String current; 
+		current = "10";
+		try {
+			write.write(current);
+			write.newLine();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		for (int y=0;y<10;y++) {
+			current="";
+		for (int x=0;x<10;x++) {
+			if (x>0) {
+			current=current+" ";
+			}
+			int lab=World.labirinto[x][y];
+			//0=chao 1=parede 2=buraco 3=saida 4=entrada
+			if (lab==0) {
+				current=current+"0";	
+			}else if (lab==1) {
+				current=current+"1";	
+			}else if (lab==2) {
+				current=current+"B";	
+			}else if (lab==3) {
+				current=current+"S";	
+			}else if (lab==4) {
+				current=current+"E";	
+			}
+			
+		}
+		try {
+			write.write(current);
+			if (y<9) {
+			write.newLine();
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		}
+		
+		return write;
+	}
 	private static BufferedWriter creat_String(BufferedWriter write, ArrayList<Geracao> geracoes) {
 
-		String current;
-		 
+		String current; 
 		current = "Movimentos 0=NW 1=N 2=NE 3=E 4=SE 5=S 6=SW 7=W";
 		try {
 			write.write(current);
@@ -96,8 +153,8 @@ public class Save_Game {
 		return write;
 	}
 
-	public static void load() {
-		String path = "save3.txt";
+	public static void load(String path) {
+		
 		int cont_line = 1;
 		File file = new File(path);
 		if (file.exists()) {

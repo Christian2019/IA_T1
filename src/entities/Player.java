@@ -61,6 +61,10 @@ public class Player extends Entity {
 
 			}
 		} else if (Game.ui.state.equals("ag2")) {
+			if (ag_path.length()==0) {
+				vivo=false;
+				
+			}
 			if (elite) {
 				Game.ui.ag2_cromossomo_elite_valor_str = ag_path;
 			}

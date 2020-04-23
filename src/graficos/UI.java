@@ -136,7 +136,7 @@ public class UI {
 	int ag1_string_tamanho_cromossomo2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_tamanho_cromossomo2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 26.5);
 	// string tamanho_cromossomo_valor
-	String ag1_string_tamanho_cromossomo_valor_str = "50";
+	String ag1_string_tamanho_cromossomo_valor_str = "99";
 	int ag1_string_tamanho_cromossomo_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_tamanho_cromossomo_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 23.5);
 	// string limite_geracao
@@ -335,6 +335,9 @@ public class UI {
 								&& Game.MY < this.menuprincipal_botao_editarmapa_height
 										+ menuprincipal_botao_editarmapa_y)) {
 					System.out.println("Editar mapa");
+					World.clearPlayers();
+					state = "em";
+					background = false;
 				}
 				// Bota a*
 				else if ((Game.MX > menuprincipal_botao_astar_x
@@ -515,7 +518,7 @@ public class UI {
 					double taxamutacao = Double.parseDouble(this.ag1_string_taxa_mutacao_valor_str);
 					ag = new AlgGen();
 					ag.callAG(populacao, tamanho_cromossomo, limitegeracao, taxamutacao);
-					Save_Game.save(ag.Geracoes);
+					Save_Game.save_geracoes(ag.Geracoes);
 					if (ag.solucao_encontrada) {
 						ag1_fb_str = "Pronto, com solução!";
 						permissao_comecar = true;
@@ -762,12 +765,14 @@ public class UI {
 		// Cromossomo elite
 		g.drawString(ag2_cromossomo_elite_str, ag2_cromossomo_elite_x, ag2_cromossomo_elite_y);
 		g.setColor(Color.RED);
+		if(ag2_cromossomo_elite_valor_str.length()>0) {
 		g.drawString(this.ag2_cromossomo_elite_valor_str.substring(0, 1), ag2_cromossomo_elite_x,
 				ag2_cromossomo_elite_y + Proporcoes.porcentagem(Proporcoes.Y_Total, 5));
 		g.setColor(Color.BLUE);
 		g.drawString(this.ag2_cromossomo_elite_valor_str.substring(1, ag2_cromossomo_elite_valor_str.length()),
 				ag2_cromossomo_elite_x + Proporcoes.porcentagem(Proporcoes.X_Total, 1),
 				ag2_cromossomo_elite_y + Proporcoes.porcentagem(Proporcoes.Y_Total, 5));
+		}
 		// Aptidao Elite
 		g.setColor(Color.BLUE);
 		g.drawString(ag2_aptidao_elite_str, ag2_aptidao_elite_x, ag2_aptidao_elite_y);

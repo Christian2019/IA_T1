@@ -54,6 +54,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static ArrayList<Entity> entities;
 	public static Random rand;
 	public static UI ui;
+	public static Editor_Mapa editor_mapa;
 	public static String estado = "Game";
 	public static int Nivel = 0;
 	public static boolean restart = false;
@@ -68,15 +69,17 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static BufferedImage background;
 
-	public static int MX;
-	public static int MY;
+	public static double MX;
+	public static double MY;
 	public static boolean mouseClicked;
 
 	public static void iniciar() {
 		Sound.fundo2.loop();
 		entities.clear();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		world = new World();
+		String path = "save.txt";
+		world = new World(path);
+		editor_mapa= new Editor_Mapa();
 	}
 
 	public Game() {
@@ -134,6 +137,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static void main(String[] args) throws InterruptedException, MalformedURLException {
 		autoScale();
 	//	 SCALE = 5;
+		System.out.println("SCALE: "+SCALE);
 		game = new Game();
 		game.start();
 	}
@@ -155,6 +159,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public void tick() {
 		ui.tick();
+		if (ui.state.equals("em")) {
+			editor_mapa.tick();
+		}
 		world.depth(entities);
 		for (int i = 0; i < entities.size(); i++) {
 			entities.get(i).tick();
@@ -185,11 +192,16 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			entities.get(i).render(g2);
 		}
 		ui.render(g);
+		
 		if (ui.state.equals("astar")) {
 			g.drawImage(World.mapa, Proporcoes.porcentagem(Proporcoes.X_Total, 25),
 					0, HEIGHT * SCALE, HEIGHT * SCALE,null);
 		}else if (ui.state.equals("ag2")) {
 			g.drawImage(World.mapa, Proporcoes.porcentagem(Proporcoes.X_Total, 0),
+					0, HEIGHT * SCALE, HEIGHT * SCALE,null);
+		}else if (ui.state.equals("em")) {
+			editor_mapa.render(g);
+			g.drawImage(World.mapa, 0,
 					0, HEIGHT * SCALE, HEIGHT * SCALE,null);
 		}
 		bs.show();

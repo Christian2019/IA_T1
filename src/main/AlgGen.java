@@ -43,35 +43,38 @@ public class AlgGen {
 	public void playGod(int[][] matrizA) {
 		this.matriz_Atual_Aptidoes.clear();
 		geracao = geracao + 1;
+		/*
 		System.out.println();
 		System.out.println("Geracao: " + geracao);
 		System.out.println();
-
+*/
 		// Defini a aptidao de cada pessoa da populacao
 		for (int x = 0; x < populacao; x++) {
 			calculaAptidao(matrizA, x);
 		}
-
+/*
 		System.out.println("Populacao atual:");
 //		this.imprimeMatriz(matrizA);
 		System.out.println("Aptidoes:");
+		
 		for (int i = 0; i < this.matriz_Atual_Aptidoes.size(); i++) {
 			System.out.print(this.matriz_Atual_Aptidoes.get(i));
 		}
-		System.out.println();
-
+		
+	//	System.out.println();
+*/
 		// Define o melhor da populacao e joga na nova geracao
 		int x_elite = this.elitismo();
 		elite = new int[this.tamanho_cromossomo];
 		for (int i = 0; i < this.tamanho_cromossomo; i++) {
 			elite[i] = matrizA[x_elite][i];
 		}
-		System.out.println("elite:");
+	//	System.out.println("elite:");
 		for (int i = 0; i < this.tamanho_cromossomo; i++) {
-			System.out.print(elite[i]);
+	//		System.out.print(elite[i]);
 		}
-		System.out.println();
-		System.out.println("Aptidao elite: " + this.matriz_Atual_Aptidoes.get(x_elite));
+	//	System.out.println();
+	//	System.out.println("Aptidao elite: " + this.matriz_Atual_Aptidoes.get(x_elite));
 		int[][] matrizI = new int[populacao][tamanho_cromossomo];
 		for (int i = 0; i < this.tamanho_cromossomo; i++) {
 			matrizI[0][i] = elite[i];
@@ -112,12 +115,12 @@ public class AlgGen {
 			for (int i = 0; i < this.tamanho_cromossomo; i++) {
 				solucao[i] = matrizA[this.solucao_x][i];
 			}
-			this.imprimeVetor(solucao);
-			System.out.println();
+		//	this.imprimeVetor(solucao);
+		//	System.out.println();
 			ArrayList<Ponto> casas = new ArrayList<Ponto>();
 			casas = this.movimentos_pontos(solucao);
 			for (int i = 0; i < casas.size(); i++) {
-				System.out.print(casas.get(i));
+			//	System.out.print(casas.get(i));
 			}
 			System.out.println("solucao encontrada!");
 			return;

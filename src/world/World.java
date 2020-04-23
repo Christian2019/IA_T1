@@ -23,16 +23,17 @@ public class World {
 
 	public static Tile[] tiles;
 	public static int WIDTH=10, HEIGHT=10;
-	//0=chao 1=parede 2=buraco 3=S 4=entrada
+	//0=chao 1=parede 2=buraco 3=saida 4=entrada
 	public static int[][] labirinto;
 	public static int x_inicial;
 	public static int y_inicial;
 	public static BufferedImage mapa;
 
-	public World() {
+	public World(String path) {
 		mapa= new BufferedImage(WIDTH*Game.TILE_SIZE, HEIGHT*Game.TILE_SIZE,BufferedImage.TYPE_INT_RGB);
+		Game.entities.clear();
 		labirinto = new int[10][10];
-		Save_Game.load();
+		Save_Game.load(path);
 		imprimeWorld();
 	
 		tiles = new Tile [WIDTH*HEIGHT];
@@ -67,6 +68,38 @@ public class World {
 		
 		
 		
+	}
+	public void editar_mapa() {
+		Game.entities.clear();
+		tiles = new Tile [WIDTH*HEIGHT];
+		for (int x=0;x<10;x++) {
+			for (int y=0;y<10;y++) {
+				//Chao
+				tiles[x+(y*WIDTH)]= new Floor_Tile(x*Game.TILE_SIZE,y*Game.TILE_SIZE,Tile.TILE_FLOOR);
+				//parede
+				if (labirinto[x][y]==1) {
+					tiles[x+(y*WIDTH)]= new Wall_Tile(x*Game.TILE_SIZE,y*Game.TILE_SIZE,Tile.TILE_WALL);
+				
+				}
+				//buraco
+				else if (labirinto[x][y]==2) {
+					tiles[x+(y*WIDTH)]= new Wall_Tile(x*Game.TILE_SIZE,y*Game.TILE_SIZE,Tile.TILE_HOLE);
+						
+				}
+				//entrada
+				else if (labirinto[x][y]==4) {
+					Entrada entrada = new Entrada(x*Game.TILE_SIZE,y*Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE, Entity.ENTRADA, 0, 3);	
+					
+					Game.entities.add(entrada);
+				}
+				//saida
+				else if (labirinto[x][y]==3) {
+					Saida saida = new Saida(x*Game.TILE_SIZE,y*Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE, Entity.SAIDA, 0, 3);	
+					Game.entities.add(saida);
+				}
+				
+			}
+		}
 	}
 	public static void clearPlayers() {
 		for (int i=0;i<Game.entities.size();i++) {
