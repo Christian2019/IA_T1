@@ -47,7 +47,7 @@ public class Player extends Entity {
 		}
 
 		Vector2i end = new Vector2i((int) (x_end / Game.TILE_SIZE), (int) (y_end / Game.TILE_SIZE));
-		path = AStar.findPath(Game.world, start, end);
+		path = AStar.findPath(start, end);
 
 	}
 

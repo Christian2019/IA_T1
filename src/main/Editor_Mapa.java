@@ -228,7 +228,7 @@ public class Editor_Mapa {
 		}
 		Vector2i start = new Vector2i((int) (x_start / Game.TILE_SIZE), (int) (y_start / Game.TILE_SIZE));
 		Vector2i end = new Vector2i((int) (x_end / Game.TILE_SIZE), (int) (y_end / Game.TILE_SIZE));
-		List<Node> path = AStar.findPath(Game.world, start, end);
+		List<Node> path = AStar.findPath(start, end);
 		
 		if (path==null) {
 			em_feedback_srt= "Caminho impossível!";

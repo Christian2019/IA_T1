@@ -11,7 +11,7 @@ public class AlgGen {
 	public ArrayList<Geracao> Geracoes;
 
 	// Trocavel
-	int populacao = 1001; // Precisa ser impar Ideal 1001
+	int populacao = 15; // Precisa ser impar Ideal 1001
 	int tamanho_cromossomo = 50; // Ideal 50
 	int limitegeracao = 1000;
 	double taxa_mutacao = 2; // % de ocorrer. Valor(entre 0.1-100) Ideal 2
@@ -43,11 +43,11 @@ public class AlgGen {
 	public void playGod(int[][] matrizA) {
 		this.matriz_Atual_Aptidoes.clear();
 		geracao = geracao + 1;
-		/*
-		System.out.println();
+	
+		
 		System.out.println("Geracao: " + geracao);
-		System.out.println();
-*/
+		
+
 		// Defini a aptidao de cada pessoa da populacao
 		for (int x = 0; x < populacao; x++) {
 			calculaAptidao(matrizA, x);
@@ -74,7 +74,7 @@ public class AlgGen {
 	//		System.out.print(elite[i]);
 		}
 	//	System.out.println();
-	//	System.out.println("Aptidao elite: " + this.matriz_Atual_Aptidoes.get(x_elite));
+		System.out.println("Aptidao elite: " + this.matriz_Atual_Aptidoes.get(x_elite));
 		int[][] matrizI = new int[populacao][tamanho_cromossomo];
 		for (int i = 0; i < this.tamanho_cromossomo; i++) {
 			matrizI[0][i] = elite[i];
@@ -164,13 +164,15 @@ public class AlgGen {
 	public int elitismo() {
 		int elite = 0;
 		int melhor_v1 = 0;
-		int melhor_v2 = 100;
+		int melhor_v2 = 10000;
 		for (int i = 0; i < this.matriz_Atual_Aptidoes.size(); i++) {
 			if (this.matriz_Atual_Aptidoes.get(i).v1 > melhor_v1) {
 				melhor_v1 = this.matriz_Atual_Aptidoes.get(i).v1;
+				melhor_v2 = this.matriz_Atual_Aptidoes.get(i).v2;
 				elite = i;
 			} else if (this.matriz_Atual_Aptidoes.get(i).v1 == melhor_v1) {
 				if (this.matriz_Atual_Aptidoes.get(i).v2 < melhor_v2) {
+					melhor_v1 = this.matriz_Atual_Aptidoes.get(i).v1;
 					melhor_v2 = this.matriz_Atual_Aptidoes.get(i).v2;
 					elite = i;
 				}

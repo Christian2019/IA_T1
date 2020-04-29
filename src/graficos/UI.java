@@ -160,7 +160,7 @@ public class UI {
 	int ag1_string_taxa_mutacao2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_taxa_mutacao2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 54);
 	// string taxa_mutacao_valor
-	String ag1_string_taxa_mutacao_valor_str = "2";
+	String ag1_string_taxa_mutacao_valor_str = "1";
 	int ag1_string_taxa_mutacao_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_taxa_mutacao_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 51);
 	// string gerar

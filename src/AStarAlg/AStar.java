@@ -53,7 +53,7 @@ public class AStar {
 		return false;
 	}
 
-	public static List<Node> findPath(World world, Vector2i start, Vector2i end) {
+	public static List<Node> findPath(Vector2i start, Vector2i end) {
 		lastTime = System.currentTimeMillis();
 		List<Node> openList = new ArrayList<Node>();
 		List<Node> closedList = new ArrayList<Node>();
@@ -78,6 +78,7 @@ public class AStar {
 				closedList.clear();
 				return path;
 			}
+			
 			openList.remove(current);
 			closedList.add(current);
 			for (int i = 0; i < 9; i++) {
@@ -102,7 +103,7 @@ public class AStar {
 				if (tile instanceof Wall_Tile) {
 					continue;
 				}
-				//Movimento em diagonal
+				//Movimento em diagonal bloqueado
 		//		if (i == 0 || i == 2 || i == 6 || i == 8) {
 			//		continue;
 				//}
@@ -119,7 +120,6 @@ public class AStar {
 				if (!vecInList(openList, a)) {
 					openList.add(node);
 				} else if (gCost < current.gcost) {
-
 					openList.remove(current);
 					openList.add(node);
 				}
