@@ -441,7 +441,7 @@ public class UI {
 			} else if (ag1_selecionado == 4) {
 				String type = Alphabet.type();
 				if (this.ag1_string_taxa_mutacao_valor_str.length() == 0) {
-					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
+					if (!type.equals("backspace") && !type.equals("")) {
 						ag1_string_taxa_mutacao_valor_str = type;
 					}
 				} else if (this.ag1_string_taxa_mutacao_valor_str.length() < 2) {
