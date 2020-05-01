@@ -136,7 +136,7 @@ public class UI {
 	int ag1_string_tamanho_cromossomo2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_tamanho_cromossomo2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 26.5);
 	// string tamanho_cromossomo_valor
-	String ag1_string_tamanho_cromossomo_valor_str = "99";
+	String ag1_string_tamanho_cromossomo_valor_str = "400";
 	int ag1_string_tamanho_cromossomo_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_tamanho_cromossomo_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 23.5);
 	// string limite_geracao
@@ -160,7 +160,7 @@ public class UI {
 	int ag1_string_taxa_mutacao2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_taxa_mutacao2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 54);
 	// string taxa_mutacao_valor
-	String ag1_string_taxa_mutacao_valor_str = "1";
+	String ag1_string_taxa_mutacao_valor_str = "4";
 	int ag1_string_taxa_mutacao_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_taxa_mutacao_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 51);
 	// string gerar
@@ -410,7 +410,7 @@ public class UI {
 					if (!type.equals("0") && !type.equals("backspace") && !type.equals("")) {
 						ag1_string_tamanho_cromossomo_valor_str = type;
 					}
-				} else if (this.ag1_string_tamanho_cromossomo_valor_str.length() < 2) {
+				} else if (this.ag1_string_tamanho_cromossomo_valor_str.length() < 3) {
 					if (!type.equals("backspace") && !type.equals("")) {
 						ag1_string_tamanho_cromossomo_valor_str = ag1_string_tamanho_cromossomo_valor_str + type;
 					}

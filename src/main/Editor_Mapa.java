@@ -68,8 +68,7 @@ public class Editor_Mapa {
 			if ((Game.MX > em_botao_voltar_x && Game.MX < this.em_botao_voltar_width + em_botao_voltar_x)
 					&& (Game.MY > em_botao_voltar_y && Game.MY < this.em_botao_voltar_height + em_botao_voltar_y)) {
 				System.out.println("Botao voltar");
-				String path = "save.txt";
-				Game.world = new World(path);
+				Game.world = new World(Game.path);
 				selecionado=0;
 				Game.ui.state = "Menu principal";
 			}

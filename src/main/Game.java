@@ -72,12 +72,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static double MX;
 	public static double MY;
 	public static boolean mouseClicked;
+	public static String path="save7.txt";
 
 	public static void iniciar() {
 		Sound.fundo2.loop();
 		entities.clear();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		String path = "save.txt";
 		world = new World(path);
 		editor_mapa= new Editor_Mapa();
 	}

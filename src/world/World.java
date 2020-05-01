@@ -54,7 +54,8 @@ public class World {
 				//entrada
 				else if (labirinto[x][y]==4) {
 					Entrada entrada = new Entrada(x*Game.TILE_SIZE,y*Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE, Entity.ENTRADA, 0, 3);	
-					
+					x_inicial=x;
+					y_inicial=y;
 					Game.entities.add(entrada);
 				}
 				//saida

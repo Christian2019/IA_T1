@@ -14,11 +14,15 @@ public class AlgGen {
 	int populacao = 15; // Precisa ser impar Ideal 1001
 	int tamanho_cromossomo = 50; // Ideal 50
 	int limitegeracao = 1000;
-	double taxa_mutacao = 2; // % de ocorrer. Valor(entre 0.1-100) Ideal 2
+	double taxa_mutacao = 4; // % de ocorrer. Valor(entre 0.1-100) Ideal 2
 	//
 	int geracao;
 	Random random = new Random();
 	// Movimentos 0=NW 1=N 2=NE 3=E 4=SE 5=S 6=SW 7=W
+	//Pontos visitados
+	ArrayList<Ponto> pontos_visitados=new ArrayList<Ponto>();
+
+	
 	ArrayList<Aptidao> matriz_Atual_Aptidoes = new ArrayList<Aptidao>();
 	public boolean solucao_encontrada=false;
 	int solucao_x;
@@ -26,6 +30,7 @@ public class AlgGen {
 	int[] elite;
 
 	public void callAG(int p,int tc, int lg, double tm) {
+		this.pontos_visitados.clear();
 		this.populacao=p;
 		this.tamanho_cromossomo=tc;
 		this.limitegeracao=lg;
@@ -41,6 +46,7 @@ public class AlgGen {
 	}
 
 	public void playGod(int[][] matrizA) {
+	
 		this.matriz_Atual_Aptidoes.clear();
 		geracao = geracao + 1;
 	
@@ -49,6 +55,7 @@ public class AlgGen {
 		
 
 		// Defini a aptidao de cada pessoa da populacao
+	
 		for (int x = 0; x < populacao; x++) {
 			calculaAptidao(matrizA, x);
 		}
@@ -70,9 +77,9 @@ public class AlgGen {
 			elite[i] = matrizA[x_elite][i];
 		}
 	//	System.out.println("elite:");
-		for (int i = 0; i < this.tamanho_cromossomo; i++) {
+//		for (int i = 0; i < this.tamanho_cromossomo; i++) {
 	//		System.out.print(elite[i]);
-		}
+//		}
 	//	System.out.println();
 		System.out.println("Aptidao elite: " + this.matriz_Atual_Aptidoes.get(x_elite));
 		int[][] matrizI = new int[populacao][tamanho_cromossomo];
@@ -156,26 +163,44 @@ public class AlgGen {
 		}
 		if (this.geracao == this.limitegeracao) {
 			System.out.println("Limite de geracao");
+			System.out.println("Pontos visitados: ");
+			for (int i=0;i<this.pontos_visitados.size();i++) {
+				System.out.println(pontos_visitados.get(i));
+			}
 			return;
 		}
+		
+	
 		playGod(matrizI);
 	}
 
 	public int elitismo() {
 		int elite = 0;
+		int melhor_v3=0;
 		int melhor_v1 = 0;
 		int melhor_v2 = 10000;
 		for (int i = 0; i < this.matriz_Atual_Aptidoes.size(); i++) {
-			if (this.matriz_Atual_Aptidoes.get(i).v1 > melhor_v1) {
+			if  (this.matriz_Atual_Aptidoes.get(i).v3 > melhor_v3) {
 				melhor_v1 = this.matriz_Atual_Aptidoes.get(i).v1;
 				melhor_v2 = this.matriz_Atual_Aptidoes.get(i).v2;
+				melhor_v3 = this.matriz_Atual_Aptidoes.get(i).v3;
 				elite = i;
-			} else if (this.matriz_Atual_Aptidoes.get(i).v1 == melhor_v1) {
-				if (this.matriz_Atual_Aptidoes.get(i).v2 < melhor_v2) {
-					melhor_v1 = this.matriz_Atual_Aptidoes.get(i).v1;
-					melhor_v2 = this.matriz_Atual_Aptidoes.get(i).v2;
-					elite = i;
+			}
+			else if (this.matriz_Atual_Aptidoes.get(i).v3 ==melhor_v3) {
+				if (this.matriz_Atual_Aptidoes.get(i).v1 > melhor_v1) {
+				melhor_v1 = this.matriz_Atual_Aptidoes.get(i).v1;
+				melhor_v2 = this.matriz_Atual_Aptidoes.get(i).v2;
+				melhor_v3 = this.matriz_Atual_Aptidoes.get(i).v3;
+				elite = i;
 				}
+				else if (this.matriz_Atual_Aptidoes.get(i).v1 == melhor_v1) {
+					if (this.matriz_Atual_Aptidoes.get(i).v2 < melhor_v2) {
+						melhor_v1 = this.matriz_Atual_Aptidoes.get(i).v1;
+						melhor_v2 = this.matriz_Atual_Aptidoes.get(i).v2;
+						melhor_v3 = this.matriz_Atual_Aptidoes.get(i).v3;
+						elite = i;
+					}
+			} 
 			}
 
 		}
@@ -188,11 +213,13 @@ public class AlgGen {
 
 		for (int i = 0; i < filhos.size(); i++) {
 			for (int j = 0; j < filhos.get(i).length; j++) {
+			
 				if (random.nextInt(1000) <= chance) {
 					// System.out.println("MUTACAO!");
 					int novo_movimento = random.nextInt(8);
 					filhos.get(i)[j] = novo_movimento;
 				}
+			
 
 			}
 		}
@@ -351,7 +378,12 @@ public class AlgGen {
 		// System.out.println(caminho_vivo);
 		int val1 = -1;
 		int val2 = 0;
+		int val3 =0;
 		for (int i = 0; i < caminho_vivo.size(); i++) {
+			if (this.caminho_novo(caminho_vivo.get(i))>val3) {
+				val3=this.caminho_novo(caminho_vivo.get(i));
+			}
+			
 			int repetidas = 0;
 			for (int j = 0; j < i; j++) {
 				if (caminho_vivo.get(i).x == caminho_vivo.get(j).x && caminho_vivo.get(i).y == caminho_vivo.get(j).y) {
@@ -369,11 +401,26 @@ public class AlgGen {
 		// System.out.println(val1);
 		// System.out.println(val2);
 
-		Aptidao aptidao = new Aptidao(val1, val2);
+		Aptidao aptidao = new Aptidao(val1, val2,val3);
 		this.matriz_Atual_Aptidoes.add(aptidao);
+		
+		
 	}
+	
+public int caminho_novo(Ponto tile) {
+		
+	for (int i=0;i<pontos_visitados.size();i++) {
+		if (tile.x==pontos_visitados.get(i).x&&tile.y==pontos_visitados.get(i).y) {
+			return i;
+		}
+	}
+	pontos_visitados.add(tile);
+	return pontos_visitados.size()-1;
+	
+}
 
-	public int torneio() {
+public int torneio() {
+	
 		Random random = new Random();
 		int vencedor = 0;
 		int c1 = random.nextInt(populacao);
@@ -382,7 +429,13 @@ public class AlgGen {
 			c1 = random.nextInt(populacao);
 			c2 = random.nextInt(populacao);
 		}
-		if (this.matriz_Atual_Aptidoes.get(c1).v1 > this.matriz_Atual_Aptidoes.get(c2).v1) {
+		if (this.matriz_Atual_Aptidoes.get(c1).v3 > this.matriz_Atual_Aptidoes.get(c2).v3) {
+			vencedor =c1;
+		}
+		else if (this.matriz_Atual_Aptidoes.get(c1).v3 < this.matriz_Atual_Aptidoes.get(c2).v3) {
+			vencedor =c2;
+		}
+		else if (this.matriz_Atual_Aptidoes.get(c1).v1 > this.matriz_Atual_Aptidoes.get(c2).v1) {
 			vencedor = c1;
 		} else if (this.matriz_Atual_Aptidoes.get(c1).v1 < this.matriz_Atual_Aptidoes.get(c2).v1) {
 			vencedor = c2;
