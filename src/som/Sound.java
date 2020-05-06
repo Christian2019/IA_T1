@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -19,7 +20,9 @@ public class Sound {
 	public static Clips fundo= load("/fundo.wav",1);
 	public static Clips fundo2= load("/fundo2.wav",1);
 	
-	
+	static double gain=0.25;
+	public static boolean volume_Pressed_Positive;
+	public static boolean volume_Pressed_Negative;
 
 	public static void stopAll() {
 			
@@ -44,8 +47,37 @@ public class Sound {
 				clips[i].open(AudioSystem.getAudioInputStream(new ByteArrayInputStream(buffer)));
 			}
 		}
+		public void volume() {
+			if (volume_Pressed_Positive) {
+				volume_Pressed_Positive=false;
+				if (gain<1) {
+				gain=gain+0.01;
+				}
+			}else if (volume_Pressed_Negative) {
+				volume_Pressed_Negative=false;
+				if (gain>0)
+				gain=gain-0.01;
+			} 
+				
+			
+			Clip clip = clips[p];
+
+			// Get the gain control from clip
+
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+
+			// set the gain (between 0.0 and 1.0)
+
+			     
+			float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+			gainControl.setValue(dB);
+			
+	      	
+			
+		}
 		public void play() {
 			if (clips==null) return;
+			
 			clips[p].stop();
 			clips[p].setFramePosition(0);
 			clips[p].start();

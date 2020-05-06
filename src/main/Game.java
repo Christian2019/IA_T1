@@ -72,9 +72,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static double MX;
 	public static double MY;
 	public static boolean mouseClicked;
-	public static String path="save7.txt";
+	public static String path="save.txt";
 
 	public static void iniciar() {
+		Sound.fundo.volume();
+		Sound.fundo2.volume();
 		Sound.fundo2.loop();
 		entities.clear();
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -158,6 +160,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	}
 
 	public void tick() {
+		
+		
 		ui.tick();
 		if (ui.state.equals("em")) {
 			editor_mapa.tick();
@@ -236,6 +240,17 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_P) {
+			Sound.volume_Pressed_Positive=true;
+			Sound.fundo.volume();
+			Sound.volume_Pressed_Positive=true;
+			Sound.fundo2.volume();
+		}else if (e.getKeyCode() == KeyEvent.VK_M) {
+			Sound.volume_Pressed_Negative=true;
+			Sound.fundo.volume();
+			Sound.volume_Pressed_Negative=true;
+			Sound.fundo2.volume();
+		}
 		if (ui.state.equals("ag1") && !(ui.ag1_selecionado == 0)||ui.state.equals("ag2") && !(ui.ag2_selecionado == 0)) {
 			if (e.getKeyCode() == KeyEvent.VK_0) {
 				Alphabet.vk_0 = true;
