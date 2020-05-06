@@ -78,7 +78,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		Sound.fundo.volume();
 		Sound.fundo2.volume();
 		Sound.fundo2.loop();
-		entities.clear();
+		entities.clear(); 
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		world = new World(path);
 		editor_mapa= new Editor_Mapa();
