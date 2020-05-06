@@ -20,7 +20,7 @@ public class Sound {
 	public static Clips fundo= load("/fundo.wav",1);
 	public static Clips fundo2= load("/fundo2.wav",1);
 	
-	static double gain=0.25;
+	static double gain=0.05;
 	public static boolean volume_Pressed_Positive;
 	public static boolean volume_Pressed_Negative;
 
@@ -48,9 +48,7 @@ public class Sound {
 			}
 		}
 		public void volume() {
-			if (gain<0) {
-				gain=0;
-			}
+			
 			if (volume_Pressed_Positive) {
 				volume_Pressed_Positive=false;
 				if (gain<1) {
@@ -74,7 +72,11 @@ public class Sound {
 			     
 			float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
 			gainControl.setValue(dB);
-			
+			if (gain<0) {
+				gain=0;
+			}else if (gain>100) {
+				gain=100;
+			}
 	      	System.out.println("Volume: "+gain*100);
 			
 		}
