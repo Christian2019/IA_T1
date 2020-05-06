@@ -48,6 +48,9 @@ public class Sound {
 			}
 		}
 		public void volume() {
+			if (gain<0) {
+				gain=0;
+			}
 			if (volume_Pressed_Positive) {
 				volume_Pressed_Positive=false;
 				if (gain<1) {
@@ -72,7 +75,7 @@ public class Sound {
 			float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
 			gainControl.setValue(dB);
 			
-	      	
+	      	System.out.println("Volume: "+gain*100);
 			
 		}
 		public void play() {
