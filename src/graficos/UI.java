@@ -136,7 +136,7 @@ public class UI {
 	int ag1_string_tamanho_cromossomo2_x = Proporcoes.porcentagem(Proporcoes.X_Total, 70);
 	int ag1_string_tamanho_cromossomo2_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 26.5);
 	// string tamanho_cromossomo_valor
-	String ag1_string_tamanho_cromossomo_valor_str = "400";
+	String ag1_string_tamanho_cromossomo_valor_str = "99";
 	int ag1_string_tamanho_cromossomo_valor_x = Proporcoes.porcentagem(Proporcoes.X_Total, 85.5);
 	int ag1_string_tamanho_cromossomo_valor_y = Proporcoes.porcentagem(Proporcoes.Y_Total, 23.5);
 	// string limite_geracao
